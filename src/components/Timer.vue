@@ -2,11 +2,7 @@
     <h1>Timer</h1>
     <TimerInput v-on:changeHandler="inputHandler" />
     <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
-    <TimerDisplay
-        :inputedTimes="inputedTimes"
-        :startTime="startTime"
-        :currentTime="currentTime"
-    />
+    <TimerDisplay :timeLeft="timeLeft" />
 </template>
 
 <script>
@@ -38,6 +34,7 @@ export default {
                 milliseconds: null,
                 date: null,
             },
+            timeLeft: null,
         }
     },
     methods: {
@@ -48,6 +45,10 @@ export default {
                 const date = new Date()
                 if (this.isStarted) {
                     this.currentTime.milliseconds = date.getTime()
+                    this.timeLeft =
+                        this.inputedTimes.totalMils -
+                        (this.currentTime.milliseconds -
+                            this.startTime.milliseconds)
                     this.currentTime.date = date.toString()
                 } else {
                     clearInterval(interval)
