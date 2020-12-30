@@ -12,7 +12,7 @@ export default {
     },
     methods: {
         showIcon() {
-            this.$refs.icon.style.opacity = 1
+            this.$refs.icon.style.opacity = 0.75
         },
         hideIcon() {
             this.$refs.icon.style.opacity = 0
