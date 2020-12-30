@@ -57,6 +57,7 @@ export default {
                 const date = new Date()
                 if (this.isStarted) {
                     this.currentTime.milliseconds = date.getTime()
+
                     this.timeLeft.milliseconds =
                         this.inputedTimes.totalMils -
                         (this.currentTime.milliseconds -
@@ -82,7 +83,9 @@ export default {
                 }
             }
 
-            if (this.isStarted) {
+            // Set new date only if the counter has started and the
+            // startTime hasn't been set
+            if (this.isStarted && this.startTime.milliseconds === null) {
                 const date = new Date()
                 this.startTime.milliseconds = date.getTime()
                 this.startTime.date = date.toString()
