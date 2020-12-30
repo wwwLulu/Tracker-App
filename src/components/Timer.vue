@@ -1,12 +1,8 @@
 <template>
     <h1>Timer</h1>
     <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
-    <p>{{ startTime.sec }}</p>
-    <p>{{ startTime.min }}</p>
-    <p>{{ startTime.hr }}</p>
-    <p>{{ startTime.day }}</p>
-    <p>{{ startTime.mth }}</p>
-    <p>{{ startTime.yr }}</p>
+    <p>{{ startTime.milliseconds }}</p>
+    <p>{{ startTime.date }}</p>
 </template>
 
 <script>
@@ -21,12 +17,8 @@ export default {
         return {
             isStarted: false,
             startTime: {
-                sec: null,
-                min: null,
-                hr: null,
-                day: null,
-                mth: null,
-                yr: null,
+                milliseconds: null,
+                date: null,
             },
         }
     },
@@ -35,11 +27,8 @@ export default {
             this.isStarted = !this.isStarted
 
             if (this.isStarted) {
-                this.startTime.sec = new Date().getSeconds()
-                this.startTime.min = new Date().getMinutes()
-                this.startTime.day = new Date().getDay()
-                this.startTime.mth = new Date().getMonth()
-                this.startTime.yr = new Date().getFullYear()
+                this.startTime.milliseconds = Date.now()
+                this.startTime.date = new Date().toString()
             }
         },
     },
