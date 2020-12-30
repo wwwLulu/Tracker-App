@@ -14,6 +14,14 @@ export default {
     data() {
         return {
             isStarted: false,
+            startTime: {
+                sec: null,
+                min: null,
+                hr: null,
+                day: null,
+                mth: null,
+                year: null,
+            },
         }
     },
     methods: {
