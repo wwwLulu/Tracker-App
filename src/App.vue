@@ -1,20 +1,41 @@
 <template>
-    <the-list title="To-Do"></the-list>
+    <the-list title="To-Do" :tasks="tasks" @updateTask="updateTask"></the-list>
+    <!-- <the-modal></the-modal> -->
 </template>
 
 <script>
 import TheList from '@/components/List/TheList.vue'
+// import TheModal from '@/components/TheModal.vue'
 
 export default {
     components: {
         TheList,
+        // TheModal,
     },
     data() {
         return {
-            toDo: [],
-            inProgress: [],
-            finished: [],
+            tasks: [
+                {
+                    id: 1,
+                    task: 'Wash the dishes',
+                    status: 'to-do',
+                },
+                {
+                    id: 2,
+                    task: 'Code a website',
+                    status: 'to-do',
+                },
+            ],
         }
+    },
+    methods: {
+        updateTask(updatedTask, taskId) {
+            this.tasks.forEach(entry => {
+                if (entry.id == taskId) {
+                    entry.task = updatedTask
+                }
+            })
+        },
     },
 }
 </script>

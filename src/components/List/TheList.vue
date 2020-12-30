@@ -6,9 +6,10 @@
         </div>
 
         <list-item
-            v-for="listItem in list"
+            v-for="listItem in toDoList"
             :key="listItem"
-            :body="listItem"
+            :listItem="listItem"
+            @updateTask="updateTask"
         ></list-item>
         <button class="card__add btn-normal btn">&#43; Add another card</button>
     </div>
@@ -22,11 +23,18 @@ export default {
     },
     props: {
         title: String,
+        tasks: Array,
     },
+    emits: ['updateTask'],
     data() {
         return {
-            list: ['Walk the dog', 'Create a website'],
+            toDoList: this.tasks.filter(item => item.status === 'to-do'),
         }
+    },
+    methods: {
+        updateTask(updatedTask, taskId) {
+            this.$emit('updateTask', updatedTask, taskId)
+        },
     },
 }
 </script>
