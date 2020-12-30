@@ -1,6 +1,6 @@
 <template>
     <h1>Timer</h1>
-    <TimerStartButton />
+    <TimerStartButton :isStarted="isStarted" />
 </template>
 
 <script>
