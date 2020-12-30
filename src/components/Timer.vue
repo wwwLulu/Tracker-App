@@ -10,6 +10,14 @@
         User timer: {{ inputedTimes.hours }} : {{ inputedTimes.minutes }} :
         {{ inputedTimes.seconds }}
     </p>
+    <p>
+        Time Left (Miliseconds):
+        {{
+            convertToMilis("hours", inputedTimes.hours) +
+            convertToMilis("minutes", inputedTimes.minutes) +
+            convertToMilis("seconds", inputedTimes.seconds)
+        }}
+    </p>
 </template>
 
 <script>
@@ -49,7 +57,7 @@ export default {
             const getCurrentTime = () => {
                 const date = new Date()
                 if (this.isStarted) {
-                    this.currentTime.milliseconds = Date.now()
+                    this.currentTime.milliseconds = date.getTime()
                     this.currentTime.date = date.toString()
                 } else {
                     clearInterval(interval)
@@ -57,8 +65,9 @@ export default {
             }
 
             if (this.isStarted) {
-                this.startTime.milliseconds = Date.now()
-                this.startTime.date = new Date().toString()
+                const date = new Date()
+                this.startTime.milliseconds = date.getTime()
+                this.startTime.date = date.toString()
             }
 
             const interval = setInterval(() => {
