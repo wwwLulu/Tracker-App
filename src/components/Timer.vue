@@ -19,7 +19,14 @@ export default {
     },
     data() {
         return {
+            // IsStarted handles both the button title and
+            // serves as a good handler for clearing the interval
+            // in getCurrentTime()
             isStarted: false,
+            // StartTime allows us to use it for
+            // 1. Data
+            // 2. A way to get timeLeft by subtracting it from
+            //    the current time
             startTime: {
                 milliseconds: null,
                 date: null,
