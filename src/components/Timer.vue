@@ -27,10 +27,6 @@ export default {
                 milliseconds: null,
                 date: null,
             },
-            timeInputs: {
-                hours: null,
-                minutes: null,
-            },
             inputedTimes: {
                 hours: null,
                 minutes: null,
