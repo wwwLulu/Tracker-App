@@ -13,9 +13,7 @@
     <p>
         Time Left (Miliseconds):
         {{
-            convertToMilis("hours", inputedTimes.hours) +
-            convertToMilis("minutes", inputedTimes.minutes) +
-            convertToMilis("seconds", inputedTimes.seconds) -
+            inputedTimes.totalMils -
             (currentTime.milliseconds - startTime.milliseconds)
         }}
     </p>
@@ -44,6 +42,7 @@ export default {
                 hours: 0,
                 minutes: 0,
                 seconds: 0,
+                totalMils: 0,
             },
             currentTime: {
                 milliseconds: null,
@@ -79,6 +78,10 @@ export default {
             this.inputedTimes.hours = hours
             this.inputedTimes.minutes = minutes
             this.inputedTimes.seconds = seconds
+            this.inputedTimes.totalMils =
+                this.convertToMilis("hours", hours) +
+                this.convertToMilis("minutes", minutes) +
+                this.convertToMilis("seconds", seconds)
         },
         convertToMilis(timeType, number) {
             switch (timeType) {
