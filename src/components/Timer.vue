@@ -2,6 +2,7 @@
     <h1>Timer</h1>
     <TimerInput />
     <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
+    <TimerDisplay />
     <p>{{ startTime.milliseconds }}</p>
     <p>{{ startTime.date }}</p>
 </template>
@@ -9,12 +10,14 @@
 <script>
 import TimerStartButton from "./TimerStartButton.vue"
 import TimerInput from "./TimerInput.vue"
+import TimerDisplay from "./TimerDisplay.vue"
 
 export default {
     name: "Timer",
     components: {
         TimerStartButton,
         TimerInput,
+        TimerDisplay,
     },
     data() {
         return {
