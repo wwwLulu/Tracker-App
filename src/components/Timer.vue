@@ -15,7 +15,8 @@
         {{
             convertToMilis("hours", inputedTimes.hours) +
             convertToMilis("minutes", inputedTimes.minutes) +
-            convertToMilis("seconds", inputedTimes.seconds)
+            convertToMilis("seconds", inputedTimes.seconds) -
+            (currentTime.milliseconds - startTime.milliseconds)
         }}
     </p>
 </template>
@@ -72,7 +73,7 @@ export default {
 
             const interval = setInterval(() => {
                 getCurrentTime()
-            })
+            }, 1)
         },
         inputHandler(hours, minutes, seconds) {
             this.inputedTimes.hours = hours
