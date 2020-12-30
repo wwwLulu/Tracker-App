@@ -47,9 +47,10 @@ export default {
             this.isStarted = !this.isStarted
 
             const getCurrentTime = () => {
+                const date = new Date()
                 if (this.isStarted) {
                     this.currentTime.milliseconds = Date.now()
-                    this.currentTime.date = new Date.toString()
+                    this.currentTime.date = date.toString()
                 } else {
                     clearInterval(interval)
                 }
