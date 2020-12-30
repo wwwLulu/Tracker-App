@@ -11,5 +11,10 @@ export default {
     components: {
         TimerStartButton,
     },
+    data() {
+        return {
+            isStarted: false,
+        }
+    },
 }
 </script>
