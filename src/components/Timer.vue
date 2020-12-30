@@ -64,9 +64,10 @@ export default {
                 getCurrentTime()
             })
         },
-        inputHandler(hours, minutes) {
+        inputHandler(hours, minutes, seconds) {
             this.inputedTimes.hours = hours
             this.inputedTimes.minutes = minutes
+            this.inputedTimes.seconds = seconds
         },
     },
 }
