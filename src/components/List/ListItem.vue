@@ -37,7 +37,7 @@ export default {
     }
     &__edit {
         position: absolute;
-        top: 0.5rem;
+        top: 1rem;
         right: 0.5rem;
         opacity: 0;
         &:hover {
