@@ -34,7 +34,12 @@ export default {
                 milliseconds: null,
                 date: null,
             },
-            timeLeft: null,
+            timeLeft: {
+                milliseconds: null,
+                seconds: null,
+                minutes: null,
+                hours: null,
+            },
         }
     },
     methods: {
@@ -45,10 +50,25 @@ export default {
                 const date = new Date()
                 if (this.isStarted) {
                     this.currentTime.milliseconds = date.getTime()
-                    this.timeLeft =
+                    this.timeLeft.milliseconds =
                         this.inputedTimes.totalMils -
                         (this.currentTime.milliseconds -
                             this.startTime.milliseconds)
+                    this.timeLeft.seconds =
+                        (this.inputedTimes.totalMils -
+                            (this.currentTime.milliseconds -
+                                this.startTime.milliseconds)) /
+                        1000
+                    this.timeLeft.minutes =
+                        (this.inputedTimes.totalMils -
+                            (this.currentTime.milliseconds -
+                                this.startTime.milliseconds)) /
+                        60000
+                    this.timeLeft.hours =
+                        (this.inputedTimes.totalMils -
+                            (this.currentTime.milliseconds -
+                                this.startTime.milliseconds)) /
+                        3600000
                     this.currentTime.date = date.toString()
                 } else {
                     clearInterval(interval)

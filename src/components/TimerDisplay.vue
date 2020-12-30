@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h5>Timer</h5>
+        <h3>Timer</h3>
         <p>
             Miliseconds Left:
-            {{ timeLeft }}
+            {{ timeLeft.milliseconds }}
         </p>
     </div>
 </template>
@@ -12,7 +12,12 @@
 export default {
     name: "TimerDisplay",
     props: {
-        timeLeft: Number,
+        timeLeft: {
+            milliseconds: Number,
+            seconds: Number,
+            minutes: Number,
+            hours: Number,
+        },
     },
 }
 </script>
