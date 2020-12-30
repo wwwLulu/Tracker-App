@@ -3,9 +3,13 @@
     <TimerInput v-on:changeHandler="inputHandler" />
     <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
     <TimerDisplay />
-    <p>{{ startTime.milliseconds }}</p>
-    <p>{{ startTime.date }}</p>
-    <p>{{ hours }}</p>
+    <p>Start Time in Miliseconds: {{ startTime.milliseconds }}</p>
+    <p>Start Date: {{ startTime.date }}</p>
+    <p>duration: {{ currentTime.milliseconds - startTime.milliseconds }}</p>
+    <p>
+        User timer: {{ inputedTimes.hours }} : {{ inputedTimes.minutes }} :
+        {{ inputedTimes.seconds }}
+    </p>
 </template>
 
 <script>
@@ -28,8 +32,13 @@ export default {
                 date: null,
             },
             inputedTimes: {
-                hours: null,
-                minutes: null,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            },
+            currentTime: {
+                milliseconds: null,
+                date: null,
             },
         }
     },
@@ -37,10 +46,23 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
+            const getCurrentTime = () => {
+                if (this.isStarted) {
+                    this.currentTime.milliseconds = Date.now()
+                    this.currentTime.date = new Date.toString()
+                } else {
+                    clearInterval(interval)
+                }
+            }
+
             if (this.isStarted) {
                 this.startTime.milliseconds = Date.now()
                 this.startTime.date = new Date().toString()
             }
+
+            const interval = setInterval(() => {
+                getCurrentTime()
+            })
         },
         inputHandler(hours, minutes) {
             this.inputedTimes.hours = hours
