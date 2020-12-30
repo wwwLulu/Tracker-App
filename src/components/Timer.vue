@@ -1,6 +1,6 @@
 <template>
     <h1>Timer</h1>
-    <TimerStartButton :isStarted="isStarted" />
+    <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
 </template>
 
 <script>
@@ -15,6 +15,11 @@ export default {
         return {
             isStarted: false,
         }
+    },
+    methods: {
+        timerStartHandler() {
+            this.isStarted = !this.isStarted
+        },
     },
 }
 </script>

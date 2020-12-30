@@ -1,5 +1,7 @@
 <template>
-    <button>{{ isStarted ? "Stop" : "Start" }}</button>
+    <button v-on:click="$emit('start')">
+        {{ isStarted ? "Stop" : "Start" }}
+    </button>
 </template>
 
 <script>
