@@ -1,6 +1,6 @@
 <template>
     <h1>Timer</h1>
-    <TimerInput />
+    <TimerInput v-on:changeHandler="inputHandler" />
     <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
     <TimerDisplay />
     <p>{{ startTime.milliseconds }}</p>
@@ -31,6 +31,10 @@ export default {
                 hours: null,
                 minutes: null,
             },
+            inputedTimes: {
+                hours: null,
+                minutes: null,
+            },
         }
     },
     methods: {
@@ -41,6 +45,10 @@ export default {
                 this.startTime.milliseconds = Date.now()
                 this.startTime.date = new Date().toString()
             }
+        },
+        inputHandler(hours, minutes) {
+            this.inputedTimes.hours = hours
+            this.inputedTimes.minutes = minutes
         },
     },
 }
