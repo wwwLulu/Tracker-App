@@ -70,6 +70,18 @@ export default {
             this.inputedTimes.minutes = minutes
             this.inputedTimes.seconds = seconds
         },
+        convertToMilis(timeType, number) {
+            switch (timeType) {
+                case "seconds":
+                    return number * 1000
+                case "minutes":
+                    return number * 60000
+                case "hours":
+                    return number * 3600000
+                default:
+                    return
+            }
+        },
     },
 }
 </script>
