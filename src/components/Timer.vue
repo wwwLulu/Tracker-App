@@ -7,13 +7,6 @@
         :startTime="startTime"
         :currentTime="currentTime"
     />
-    <p>Start Time in Miliseconds: {{ startTime.milliseconds }}</p>
-    <p>Start Date: {{ startTime.date }}</p>
-    <p>duration: {{ currentTime.milliseconds - startTime.milliseconds }}</p>
-    <p>
-        User timer: {{ inputedTimes.hours }} : {{ inputedTimes.minutes }} :
-        {{ inputedTimes.seconds }}
-    </p>
 </template>
 
 <script>
