@@ -5,6 +5,7 @@
     <TimerDisplay />
     <p>{{ startTime.milliseconds }}</p>
     <p>{{ startTime.date }}</p>
+    <p>{{ hours }}</p>
 </template>
 
 <script>
@@ -25,6 +26,10 @@ export default {
             startTime: {
                 milliseconds: null,
                 date: null,
+            },
+            timeInputs: {
+                hours: null,
+                minutes: null,
             },
         }
     },
