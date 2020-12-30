@@ -2,20 +2,17 @@
     <h1>Timer</h1>
     <TimerInput v-on:changeHandler="inputHandler" />
     <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
-    <TimerDisplay />
+    <TimerDisplay
+        :inputedTimes="inputedTimes"
+        :startTime="startTime"
+        :currentTime="currentTime"
+    />
     <p>Start Time in Miliseconds: {{ startTime.milliseconds }}</p>
     <p>Start Date: {{ startTime.date }}</p>
     <p>duration: {{ currentTime.milliseconds - startTime.milliseconds }}</p>
     <p>
         User timer: {{ inputedTimes.hours }} : {{ inputedTimes.minutes }} :
         {{ inputedTimes.seconds }}
-    </p>
-    <p>
-        Time Left (Miliseconds):
-        {{
-            inputedTimes.totalMils -
-            (currentTime.milliseconds - startTime.milliseconds)
-        }}
     </p>
 </template>
 
