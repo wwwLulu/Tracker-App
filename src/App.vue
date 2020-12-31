@@ -1,16 +1,28 @@
 <template>
-    <the-list title="To-Do" :tasks="tasks" @updateTask="updateTask"></the-list>
-    <!-- <the-modal></the-modal> -->
+    <the-list
+        title="To-Do"
+        :tasks="tasks"
+        mode="to-do"
+        @updateTask="updateTask"
+        @deleteTask="deleteTask"
+        @addTask="addTask"
+    ></the-list>
+    <the-list
+        title="Completed"
+        :tasks="tasks"
+        mode="completed"
+        @updateTask="updateTask"
+        @deleteTask="deleteTask"
+        @addTask="addTask"
+    ></the-list>
 </template>
 
 <script>
 import TheList from '@/components/List/TheList.vue'
-// import TheModal from '@/components/TheModal.vue'
 
 export default {
     components: {
         TheList,
-        // TheModal,
     },
     data() {
         return {
@@ -25,6 +37,11 @@ export default {
                     task: 'Code a website',
                     status: 'to-do',
                 },
+                {
+                    id: 3,
+                    task: 'Walk the dog',
+                    status: 'completed',
+                },
             ],
         }
     },
@@ -34,6 +51,21 @@ export default {
                 if (entry.id == taskId) {
                     entry.task = updatedTask
                 }
+            })
+        },
+        deleteTask(taskId) {
+            this.tasks = this.tasks.filter(entry => entry.id != taskId)
+        },
+        addTask(status) {
+            //When you delete then add a task, the ID's might get messed up
+            // So reassigning is good here
+            for (let i = 0; i < this.tasks.length; i++) {
+                this.tasks[i].id = i + 1
+            }
+            this.tasks.push({
+                task: ' ',
+                id: this.tasks.length + 1,
+                status,
             })
         },
     },
