@@ -15,18 +15,14 @@
         @deleteTask="deleteTask"
         @addTask="addTask"
     ></the-list>
-
-    <!-- <the-modal></the-modal> -->
 </template>
 
 <script>
 import TheList from '@/components/List/TheList.vue'
-// import TheModal from '@/components/TheModal.vue'
 
 export default {
     components: {
         TheList,
-        // TheModal,
     },
     data() {
         return {
