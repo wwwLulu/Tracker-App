@@ -7,11 +7,14 @@
 
         <list-item
             v-for="listItem in toDoList"
-            :key="listItem"
+            :key="listItem.id"
             :listItem="listItem"
             @updateTask="updateTask"
+            @deleteTask="deleteTask"
         ></list-item>
-        <button class="card__add btn-normal btn">&#43; Add another card</button>
+        <button @click="addTask" class="card__add btn-normal btn">
+            &#43; Add another card
+        </button>
     </div>
 </template>
 
@@ -24,16 +27,29 @@ export default {
     props: {
         title: String,
         tasks: Array,
+        mode: String, //To-Do | Doing | Done
     },
-    emits: ['updateTask'],
+    emits: ['updateTask', 'deleteTask', 'addTask'],
     data() {
         return {
-            toDoList: this.tasks.filter(item => item.status === 'to-do'),
+            toDoList: this.tasks.filter(item => item.status === this.mode),
         }
+    },
+    watch: {
+        tasks() {
+            this.toDoList = this.tasks.filter(item => item.status === this.mode)
+        },
     },
     methods: {
         updateTask(updatedTask, taskId) {
             this.$emit('updateTask', updatedTask, taskId)
+        },
+        deleteTask(taskId) {
+            this.$emit('deleteTask', taskId)
+        },
+        addTask() {
+            this.$emit('addTask', this.mode)
+            this.toDoList = this.tasks.filter(item => item.status === this.mode)
         },
     },
 }
