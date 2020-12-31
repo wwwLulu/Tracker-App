@@ -19,7 +19,14 @@ export default {
     },
     data() {
         return {
+            // IsStarted handles both the button title and
+            // serves as a good handler for clearing the interval
+            // in getCurrentTime()
             isStarted: false,
+            // StartTime allows us to use it for
+            // 1. Data
+            // 2. A way to get timeLeft by subtracting it from
+            //    the current time
             startTime: {
                 milliseconds: null,
                 date: null,
@@ -50,6 +57,7 @@ export default {
                 const date = new Date()
                 if (this.isStarted) {
                     this.currentTime.milliseconds = date.getTime()
+
                     this.timeLeft.milliseconds =
                         this.inputedTimes.totalMils -
                         (this.currentTime.milliseconds -
@@ -75,7 +83,9 @@ export default {
                 }
             }
 
-            if (this.isStarted) {
+            // Set new date only if the counter has started and the
+            // startTime hasn't been set
+            if (this.isStarted && this.startTime.milliseconds === null) {
                 const date = new Date()
                 this.startTime.milliseconds = date.getTime()
                 this.startTime.date = date.toString()

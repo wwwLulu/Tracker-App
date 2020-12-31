@@ -7,15 +7,15 @@
         </p>
         <p>
             Seconds Left:
-            {{ parseInt(timeLeft.seconds) }}
+            {{ parseInt(timeLeft.seconds) || null }}
         </p>
         <p>
             Minutes Left:
-            {{ parseInt(timeLeft.minutes) }}
+            {{ parseInt(timeLeft.minutes) || null }}
         </p>
         <p>
             Hours Left:
-            {{ parseInt(timeLeft.hours) }}
+            {{ parseInt(timeLeft.hours) || null }}
         </p>
     </div>
 </template>
