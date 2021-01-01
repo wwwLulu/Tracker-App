@@ -83,30 +83,24 @@ export default {
     emits: ['startStopTimer'],
     methods: {
         timerStartHandler() {
-            // Redefining for Clean Code
-            let isStarted = this.isStarted
-            let startMilis = this.startTime.milliseconds
-            let startDate = this.startTime.date
-            let currentMilis = this.currentTime.milliseconds
-            let sinceStartMilis = this.timeSinceStart.milliseconds
+            this.isStarted = !this.isStarted
 
-            isStarted = !isStarted
-
-            if (startMilis === null) {
+            if (this.startTime.milliseconds === null) {
                 const date = new Date()
-                startMilis = date.getTime()
-                startDate = date.toString()
+                this.startTime.milliseconds = date.getTime()
+                this.startTime.date = date.toString()
             }
 
             const getTimeSinceStart = () => {
-                if (isStarted) {
-                    currentMilis = new Date().getTime()
-                    sinceStartMilis = currentMilis - startMilis
+                if (this.isStarted) {
+                    this.currentTime.milliseconds = new Date().getTime()
+                    this.timeSinceStart.milliseconds =
+                        this.currentTime.milliseconds -
+                        this.startTime.milliseconds
                 } else {
                     clearInterval(interval)
                 }
             }
-
             let interval = setInterval(() => {
                 getTimeSinceStart()
             }, 1)
