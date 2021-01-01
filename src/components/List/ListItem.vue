@@ -32,9 +32,8 @@
             @click="closeWithoutSaving"
             class="task__close-without-saving btn"
         >
-            Close without saving
+            Close
         </button>
-        <button @click="deleteTask" class="task__delete btn">Delete</button>
     </div>
 </template>
 

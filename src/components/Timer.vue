@@ -93,7 +93,8 @@ export default {
 <style scoped lang="scss">
 .timer {
     margin: 0 auto;
-    margin-top: 10rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
     width: 40rem;
     display: flex;
     flex-direction: column;
