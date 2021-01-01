@@ -30,8 +30,6 @@ const store = createStore({
 
     mutations: {
         updateTask(state, { updatedTask, taskId }) {
-            console.log(taskId)
-            console.log(updatedTask)
             state.tasks.forEach(entry => {
                 if (entry.id == taskId) {
                     entry.task = updatedTask
@@ -40,7 +38,6 @@ const store = createStore({
         },
         deleteTask(state, { taskId }) {
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
-            console.log(state.tasks)
         },
         addTask(state, { status }) {
             //When you delete then add a task, the ID's might get messed up
