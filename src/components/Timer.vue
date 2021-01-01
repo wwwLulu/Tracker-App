@@ -5,7 +5,7 @@
         @startStopTimer="timerStartHandler"
         :isStarted="isStarted"
     />
-    <timer-display :timeLeft="timeLeft" />
+    <timer-display :currentTime="currentTime" />
 </template>
 
 <script>
@@ -79,6 +79,16 @@ export default {
     methods: {
         timerStartHandler() {
             this.isStarted = !this.isStarted
+
+            let interval
+
+            if (this.isStarted) {
+                interval = setInterval(() => {
+                    this.currentTime.milliseconds = new Date().getTime()
+                }, 1)
+            } else {
+                clearInterval(interval)
+            }
             // this.isStarted = !this.isStarted
             // console.log('isStarted changed')
             // const getCurrentTime = () => {
