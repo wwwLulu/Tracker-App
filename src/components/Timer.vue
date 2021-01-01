@@ -24,7 +24,7 @@ export default {
         return {
             // IsStarted handles both the button title and
             // serves as a good handler for clearing the interval
-            // in getCurrentTime()
+            // in getTimeSinceStart()
 
             isStarted: false,
 
@@ -52,32 +52,6 @@ export default {
             timeSinceStart: {
                 milliseconds: null,
             },
-
-            // StartTime allows us to use it for
-            // 1. Data
-            // 2. A way to get timeLeft by subtracting it from
-            //    the current time
-
-            // startTime: {
-            //     milliseconds: null,
-            //     date: null,
-            // },
-            // inputedTimes: {
-            //     hours: 0,
-            //     minutes: 0,
-            //     seconds: 0,
-            //     totalMils: 0,
-            // },
-            // currentTime: {
-            //     milliseconds: null,
-            //     date: null,
-            // },
-            // timeLeft: {
-            //     milliseconds: null,
-            //     seconds: null,
-            //     minutes: null,
-            //     hours: null,
-            // },
         }
     },
     emits: ['startStopTimer'],
@@ -104,44 +78,6 @@ export default {
             let interval = setInterval(() => {
                 getTimeSinceStart()
             }, 1)
-            // this.isStarted = !this.isStarted
-            // console.log('isStarted changed')
-            // const getCurrentTime = () => {
-            //     console.log('getCurrentTime interval running...')
-            //     const date = new Date()
-            //     if (this.isStarted) {
-            //         this.currentTime.milliseconds = date.getTime()
-            //         // Getting the total amount of miliseconds so that it can
-            //         // be recalculated into seconds, minutes and hours.
-            //         this.timeLeft.milliseconds =
-            //             this.inputedTimes.totalMils -
-            //             (this.currentTime.milliseconds -
-            //                 this.startTime.milliseconds)
-            //         this.timeLeft.seconds =
-            //             (this.timeLeft.milliseconds / 1000) % 60
-            //         this.timeLeft.minutes =
-            //             (this.timeLeft.milliseconds / (1000 * 60)) % 60
-            //         this.timeLeft.hours =
-            //             (this.timeLeft.milliseconds / (1000 * 60 * 60)) % 24
-            //         this.currentTime.date = date.toString()
-            //         console.log('getting and converting times...')
-            //     } else {
-            //         clearInterval(interval)
-            //         console.log('cleared getCurrentTime interval')
-            //     }
-            // }
-            // const isStartTimeSet =
-            //     this.isStarted && this.startTime.milliseconds === null
-            // if (!isStartTimeSet) {
-            //     const date = new Date()
-            //     this.startTime.milliseconds = date.getTime()
-            //     this.startTime.date = date.toString()
-            //     console.log('getting a new start time')
-            // }
-            // const interval = setInterval(() => {
-            //     getCurrentTime()
-            //     console.log('running ')
-            // }, 1)
         },
         inputHandler(hours, minutes, seconds) {
             this.totalTimeInputted.milliseconds =
