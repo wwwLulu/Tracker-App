@@ -1,11 +1,14 @@
 <template>
-    <h1>Timer</h1>
-    <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
-    <timer-start-button
-        @startStopTimer="timerStartHandler"
-        :isStarted="isStarted"
-    />
-    <timer-display :timeAccrued="timeAccrued" />
+    <div class="timer">
+        <h1 class="timer__title">Timer</h1>
+        <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
+        <timer-start-button
+            class="timer__start-button"
+            @startStopTimer="timerStartHandler"
+            :isStarted="isStarted"
+        />
+        <timer-display class="timer__display" :timeAccrued="timeAccrued" />
+    </div>
 </template>
 
 <script>
@@ -87,4 +90,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.timer {
+    text-align: center;
+    &__title {
+        font-size: 6rem;
+    }
+}
+</style>
