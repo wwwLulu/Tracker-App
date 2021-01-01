@@ -1,9 +1,9 @@
 <template>
     <div>
         <p>
-            {{ parseInt(timeAccrued.hours) || '0' }}hr
-            {{ parseInt(timeAccrued.minutes) || '00' }}m
-            {{ parseInt(timeAccrued.seconds) || '00' }}s
+            {{ parseInt(timeOccurred.hours) || '0' }}hr
+            {{ parseInt(timeOccurred.minutes) || '00' }}m
+            {{ parseInt(timeOccurred.seconds) || '00' }}s
         </p>
     </div>
 </template>
@@ -11,7 +11,7 @@
 <script>
 export default {
     props: {
-        timeAccrued: {
+        timeOccurred: {
             milliseconds: Number,
             seconds: Number,
             minutes: Number,

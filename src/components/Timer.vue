@@ -2,7 +2,7 @@
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
         <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
-        <timer-display class="timer__display" :timeAccrued="timeAccrued" />
+        <timer-display class="timer__display" :timeOccurred="timeOccurred" />
         <timer-start-button
             class="timer__start-btn"
             @startStopTimer="timerStartHandler"
@@ -26,7 +26,7 @@ export default {
         return {
             isStarted: false,
             dateStarted: null,
-            timeAccrued: {
+            timeOccurred: {
                 milliseconds: null,
                 seconds: null,
                 minutes: null,
@@ -47,25 +47,25 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            if (this.timeAccrued.milliseconds !== null) {
+            if (this.timeOccurred.milliseconds !== null) {
                 this.dateStarted = new Date().getDate()
             }
 
-            const getTimeAccrued = () => {
+            const getTimeOccurred = () => {
                 if (this.isStarted) {
-                    this.timeAccrued.milliseconds += 100
-                    this.timeAccrued.seconds =
-                        (this.timeAccrued.milliseconds / 1000) % 60
-                    this.timeAccrued.minutes =
-                        (this.timeAccrued.milliseconds / (1000 * 60)) % 60
-                    this.timeAccrued.hours =
-                        (this.timeAccrued.milliseconds / (1000 * 60 * 60)) % 24
+                    this.timeOccurred.milliseconds += 100
+                    this.timeOccurred.seconds =
+                        (this.timeOccurred.milliseconds / 1000) % 60
+                    this.timeOccurred.minutes =
+                        (this.timeOccurred.milliseconds / (1000 * 60)) % 60
+                    this.timeOccurred.hours =
+                        (this.timeOccurred.milliseconds / (1000 * 60 * 60)) % 24
                 } else {
                     clearInterval(interval)
                 }
             }
             let interval = setInterval(() => {
-                getTimeAccrued()
+                getTimeOccurred()
             }, 100)
         },
         inputHandler(hours, minutes, seconds) {
