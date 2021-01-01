@@ -11,6 +11,7 @@
             @startStopTimer="timerStartHandler"
             :isStarted="isStarted"
         />
+        <p>{{ totalStoppedTime.milliseconds }}</p>
     </div>
 </template>
 
@@ -65,8 +66,14 @@ export default {
 
             if (!this.isStarted) {
                 this.stoppedTime.milliseconds = new Date().getTime()
-            } else {
+            } else if (
+                this.stoppedTime.milliseconds !== null &&
+                this.isStarted
+            ) {
                 this.restartedTime.milliseconds = new Date().getTime()
+                this.totalStoppedTime.milliseconds +=
+                    this.restartedTime.milliseconds -
+                    this.stoppedTime.milliseconds
             }
 
             const getTimeOccurred = () => {
