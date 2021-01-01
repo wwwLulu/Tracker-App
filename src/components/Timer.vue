@@ -92,7 +92,7 @@ export default {
 
 <style scoped lang="scss">
 .timer {
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
         margin-top: 3rem;
     }
     margin: 0 auto;
