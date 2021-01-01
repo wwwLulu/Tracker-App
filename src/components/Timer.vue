@@ -25,19 +25,11 @@ export default {
     data() {
         return {
             isStarted: false,
-            dateStarted: null,
-            timeOccurred: {
-                milliseconds: null,
-                seconds: null,
-                minutes: null,
-                hours: null,
-            },
-            totalTimeInputted: {
+            startTime: {
+                date: '',
                 milliseconds: null,
             },
-
-            // Current not being used, saving it for "go-ahead"
-            inputTime: {
+            currentTime: {
                 milliseconds: null,
             },
         }
@@ -47,12 +39,15 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            if (this.timeOccurred.milliseconds !== null) {
-                this.dateStarted = new Date().getDate()
+            if (this.startTime.milliseconds === null) {
+                const date = new Date()
+                this.startTime.date = date.getDate()
+                this.startTime.milliseconds = date.getTime()
             }
 
             const getTimeOccurred = () => {
                 if (this.isStarted) {
+                    this.currentTime.milliseconds = new Date().getTime()
                     this.timeOccurred.milliseconds += 100
                     this.timeOccurred.seconds =
                         (this.timeOccurred.milliseconds / 1000) % 60
