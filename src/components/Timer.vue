@@ -31,6 +31,14 @@ export default {
                 milliseconds: null,
             },
 
+            // Getting an actual date for the DB.
+            // Getting milliseconds for simple and accurate conversions.
+
+            startTime: {
+                date: null,
+                milliseconds: null,
+            },
+
             // StartTime allows us to use it for
             // 1. Data
             // 2. A way to get timeLeft by subtracting it from
@@ -102,9 +110,6 @@ export default {
             // }, 1)
         },
         inputHandler(hours, minutes, seconds) {
-            // this.inputedTimes.hours = hours
-            // this.inputedTimes.minutes = minutes
-            // this.inputedTimes.seconds = seconds
             this.totalTimeInputted.milliseconds =
                 this.convertToMilis('hours', hours) +
                 this.convertToMilis('minutes', minutes) +
