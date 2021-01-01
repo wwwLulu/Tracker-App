@@ -30,6 +30,8 @@ const store = createStore({
 
     mutations: {
         updateTask(state, { updatedTask, taskId }) {
+            console.log(taskId)
+            console.log(updatedTask)
             state.tasks.forEach(entry => {
                 if (entry.id == taskId) {
                     entry.task = updatedTask
@@ -54,11 +56,11 @@ const store = createStore({
         },
     },
     actions: {
-        updateTask(context) {
-            context.commit('updateTask')
+        updateTask(context, payload) {
+            context.commit('updateTask', payload)
         },
-        deleteTask(context) {
-            context.commit('deleteTask')
+        deleteTask(context, payload) {
+            context.commit('deleteTask', payload)
         },
         addTask(context, payload) {
             context.commit('addTask', payload)

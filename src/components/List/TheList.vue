@@ -44,10 +44,10 @@ export default {
     },
     methods: {
         updateTask(updatedTask, taskId) {
-            this.$store.commit('updateTask', updatedTask, taskId)
+            this.$store.commit('updateTask', { updatedTask, taskId })
         },
         deleteTask(taskId) {
-            this.$store.commit('deleteTask', taskId)
+            this.$store.commit('deleteTask', { taskId })
         },
         addTask() {
             const payload = { status: this.mode }
