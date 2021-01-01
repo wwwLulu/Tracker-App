@@ -45,6 +45,7 @@ export default {
                     id: 1,
                     task: 'Wash the dishes',
                     status: 'to-do',
+                    focus: false,
                 },
                 {
                     id: 2,
@@ -94,14 +95,6 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,700&display=swap');
 :root {
-    --color-primary: #efefef;
-    --color-secondary: #efefee;
-    --color-black: #333;
-    --color-alert-add: lightgreen;
-    --color-alert-delete: lightsalmon;
-    --color-alert-info: lightyellow;
-    --color-column-even: lightgrey;
-    --color-column-odd: darkgrey;
     --normal-font: 'Nunito', sans-serif;
 }
 html {
