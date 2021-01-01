@@ -39,6 +39,15 @@ export default {
                 milliseconds: null,
             },
 
+            currentTime: {
+                milliseconds: null,
+            },
+
+            stopTime: {
+                date: null,
+                milliseconds: null,
+            },
+
             // StartTime allows us to use it for
             // 1. Data
             // 2. A way to get timeLeft by subtracting it from
