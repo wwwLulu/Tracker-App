@@ -75,6 +75,10 @@ export default {
         deleteTask() {
             this.editMode = false
             this.$emit('deleteTask', this.listItem.id)
+            // this.$store.dispatch({
+            //     type: 'deleteTask',
+            //     taskId: this.list.Item.id,
+            // })
         },
     },
 }

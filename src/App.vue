@@ -8,6 +8,14 @@
         @addTask="addTask"
     ></the-list>
     <the-list
+        title="Doing"
+        :tasks="tasks"
+        mode="doing"
+        @updateTask="updateTask"
+        @deleteTask="deleteTask"
+        @addTask="addTask"
+    ></the-list>
+    <the-list
         title="Completed"
         :tasks="tasks"
         mode="completed"
@@ -41,6 +49,11 @@ export default {
                     id: 3,
                     task: 'Walk the dog',
                     status: 'completed',
+                },
+                {
+                    id: 4,
+                    task: 'Playing Roblox',
+                    status: 'doing',
                 },
             ],
         }
@@ -105,7 +118,7 @@ body {
     &:hover {
         cursor: pointer;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-        0 4px 15px 0 rgba(0, 0, 0, 0.19);
+            0 4px 15px 0 rgba(0, 0, 0, 0.19);
     }
 }
 .btn-normal {
