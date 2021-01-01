@@ -1,11 +1,7 @@
 <template>
-    <div class="flipper-container">
+    <div class="flipper-container" v-on:click="$emit('startStopTimer')">
         <div class="flipper">
-            <button
-                v-if="isStarted"
-                class="btn btn-normal"
-                v-on:click="$emit('startStopTimer')"
-            >
+            <button class="btn btn-normal">
                 {{ isStarted ? 'Stop' : 'Start' }}
             </button>
         </div>
