@@ -27,17 +27,7 @@ const store = createStore({
             ],
         }
     },
-    actions: {
-        updateTask(context) {
-            context.commit('updateTask')
-        },
-        deleteTask(context) {
-            context.commit('deleteTask')
-        },
-        addTask(context) {
-            context.commit('addTask')
-        },
-    },
+
     mutations: {
         updateTask(state, { updatedTask, taskId }) {
             state.tasks.forEach(entry => {
@@ -48,7 +38,6 @@ const store = createStore({
         },
         deleteTask(state, { taskId }) {
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
-            console.log(state.tasks)
         },
         addTask(state, { status }) {
             //When you delete then add a task, the ID's might get messed up
@@ -63,11 +52,21 @@ const store = createStore({
             })
         },
     },
+    actions: {
+        updateTask(context, payload) {
+            context.commit('updateTask', payload)
+        },
+        deleteTask(context, payload) {
+            context.commit('deleteTask', payload)
+        },
+        addTask(context, payload) {
+            context.commit('addTask', payload)
+        },
+    },
 })
 
 const app = createApp(App)
+
 app.use(store)
 
-createApp(App).mount('#app')
-
-// this.$store.commit('deleteTask')
+app.mount('#app')

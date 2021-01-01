@@ -10,8 +10,6 @@
                 v-for="listItem in toDoList"
                 :key="listItem.id"
                 :listItem="listItem"
-                @updateTask="updateTask"
-                @deleteTask="deleteTask"
             ></list-item>
             <button @click="addTask" class="card__add btn-normal btn">
                 &#43; Add another card
@@ -31,7 +29,7 @@ export default {
         tasks: Array,
         mode: String, //To-Do | Doing | Done
     },
-    emits: ['updateTask', 'deleteTask', 'addTask'],
+    emits: ['addTask'],
     data() {
         return {
             toDoList: this.tasks.filter(item => item.status === this.mode),
@@ -43,14 +41,9 @@ export default {
         },
     },
     methods: {
-        updateTask(updatedTask, taskId) {
-            this.$emit('updateTask', updatedTask, taskId)
-        },
-        deleteTask(taskId) {
-            this.$emit('deleteTask', taskId)
-        },
         addTask() {
-            this.$emit('addTask', this.mode)
+            const payload = { status: this.mode }
+            this.$store.commit('addTask', payload)
             this.toDoList = this.tasks.filter(item => item.status === this.mode)
         },
     },

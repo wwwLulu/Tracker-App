@@ -1,36 +1,17 @@
 <template>
     <main>
-        <the-list
-            title="To-Do"
-            :tasks="tasks"
-            mode="to-do"
-            @updateTask="updateTask"
-            @deleteTask="deleteTask"
-            @addTask="addTask"
-        ></the-list>
-        <the-list
-            title="Doing"
-            :tasks="tasks"
-            mode="doing"
-            @updateTask="updateTask"
-            @deleteTask="deleteTask"
-            @addTask="addTask"
-        ></the-list>
-        <the-list
-            title="Completed"
-            :tasks="tasks"
-            mode="completed"
-            @updateTask="updateTask"
-            @deleteTask="deleteTask"
-            @addTask="addTask"
-        ></the-list>
+        <the-list title="To-Do" :tasks="tasks" mode="to-do"></the-list>
+        <the-list title="Doing" :tasks="tasks" mode="doing"></the-list>
+        <the-list title="Completed" :tasks="tasks" mode="completed"></the-list>
     </main>
 
     <timer />
 </template>
 
 <script>
-import Timer from '@/components/Timer.vue'
+import { mapState } from 'vuex'
+
+import Timer from '@/components/Timer/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
 
 export default {
@@ -38,57 +19,7 @@ export default {
         Timer,
         TheList,
     },
-    data() {
-        return {
-            tasks: [
-                {
-                    id: 1,
-                    task: 'Wash the dishes',
-                    status: 'to-do',
-                    focus: false,
-                },
-                {
-                    id: 2,
-                    task: 'Code a website',
-                    status: 'to-do',
-                },
-                {
-                    id: 3,
-                    task: 'Walk the dog',
-                    status: 'completed',
-                },
-                {
-                    id: 4,
-                    task: 'Playing Roblox',
-                    status: 'doing',
-                },
-            ],
-        }
-    },
-    methods: {
-        updateTask(updatedTask, taskId) {
-            this.tasks.forEach(entry => {
-                if (entry.id == taskId) {
-                    entry.task = updatedTask
-                }
-            })
-        },
-        deleteTask(taskId) {
-            this.tasks = this.tasks.filter(entry => entry.id != taskId)
-        },
-        addTask(status) {
-            //When you delete then add a task, the ID's might get messed up
-            // So reassigning is good here
-            for (let i = 0; i < this.tasks.length; i++) {
-                this.tasks[i].id = i + 1
-            }
-            this.tasks.push({
-                task: ' ',
-                id: this.tasks.length + 1,
-                status,
-            })
-        },
-    },
+    computed: mapState(['tasks']),
 }
 </script>
 
