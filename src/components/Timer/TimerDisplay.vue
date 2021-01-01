@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         tasks() {
-            return this.$state.tasks
+            return this.$store.state.tasks
         },
     },
 }

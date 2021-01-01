@@ -33,6 +33,13 @@ const store = createStore({
         }
     },
 
+    getters: {
+        currentTodo: state =>
+            state.tasks.filter(task => task.status === 'doing'),
+        completedTodos: state =>
+            state.tasks.filter(task => task.status === 'completed'),
+    },
+
     mutations: {
         updateTask(state, { updatedTask, taskId }) {
             state.tasks.forEach(entry => {
