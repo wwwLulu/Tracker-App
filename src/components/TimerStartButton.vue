@@ -1,5 +1,5 @@
 <template>
-    <button v-on:click="$emit('startStopTimer')">
+    <button class="btn btn-normal" v-on:click="$emit('startStopTimer')">
         {{ isStarted ? 'Stop' : 'Start' }}
     </button>
 </template>

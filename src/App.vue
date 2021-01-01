@@ -1,19 +1,19 @@
 <template>
     <the-list title="To-Do" :tasks="tasks" @updateTask="updateTask"></the-list>
-    <the-modal></the-modal>
     <timer />
+    <!-- <the-modal></the-modal> -->
 </template>
 
 <script>
 import Timer from '@/components/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
-import TheModal from '@/components/TheModal.vue'
+// import TheModal from '@/components/TheModal.vue'
 
 export default {
     components: {
         Timer,
         TheList,
-        TheModal,
+        // TheModal,
     },
     data() {
         return {
