@@ -26,10 +26,11 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-    font-size: 3.5rem;
+    font-size: 2rem;
     color: var(--color-black);
-    padding: 1.5rem 3rem;
+    padding: 1rem 3rem;
     border-radius: 1rem;
+    background-color: #aaa;
 }
 
 /* Everything below is for the Flipper */

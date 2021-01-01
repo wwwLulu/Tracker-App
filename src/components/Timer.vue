@@ -1,6 +1,6 @@
 <template>
     <div class="timer">
-        <h1 class="timer__title">Timer</h1>
+        <h1 class="timer__title">Focus</h1>
         <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
         <timer-display class="timer__display" :timeAccrued="timeAccrued" />
         <timer-start-button
@@ -102,10 +102,10 @@ export default {
     background-color: lightgrey;
     border-radius: 0.5rem;
     &__title {
-        font-size: 8rem;
+        font-size: 4rem;
     }
     &__display {
-        font-size: 5rem;
+        font-size: 3rem;
     }
     &__start-btn {
         margin-top: 1rem;
