@@ -6,6 +6,7 @@
         :isStarted="isStarted"
     />
     <timer-display :currentTime="currentTime" />
+    <p>{{ timeSinceStart.milliseconds }}</p>
 </template>
 
 <script>
@@ -48,6 +49,10 @@ export default {
                 milliseconds: null,
             },
 
+            timeSinceStart: {
+                milliseconds: null,
+            },
+
             // StartTime allows us to use it for
             // 1. Data
             // 2. A way to get timeLeft by subtracting it from
@@ -80,15 +85,24 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            const getCurrentTime = () => {
+            if (this.startTime.milliseconds === null) {
+                const date = new Date()
+                this.startTime.milliseconds = date.getTime()
+                this.startTime.date = date.toString()
+            }
+
+            const getTimeSinceStart = () => {
                 if (this.isStarted) {
                     this.currentTime.milliseconds = new Date().getTime()
+                    this.timeSinceStart.milliseconds =
+                        this.currentTime.milliseconds -
+                        this.startTime.milliseconds
                 } else {
                     clearInterval(interval)
                 }
             }
             let interval = setInterval(() => {
-                getCurrentTime()
+                getTimeSinceStart()
             }, 1)
             // this.isStarted = !this.isStarted
             // console.log('isStarted changed')
