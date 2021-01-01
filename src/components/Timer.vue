@@ -92,6 +92,11 @@ export default {
 
 <style scoped lang="scss">
 .timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 291px;
     text-align: center;
     &__title {
         font-size: 8rem;
@@ -100,8 +105,10 @@ export default {
         font-size: 5rem;
     }
     &__start-button {
-        font-size: 2rem;
+        color: var(--color-black);
+        font-size: 3.5rem;
         font-weight: 600;
+        padding: 1.3rem 4rem;
     }
 }
 </style>
