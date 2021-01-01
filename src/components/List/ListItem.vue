@@ -66,7 +66,10 @@ export default {
             this.editMode = false
         },
         saveAndClose() {
-            this.$emit('updateTask', this.updatedTask, this.listItem.id)
+            this.$store.commit('updateTask', {
+                updatedTask: this.updatedTask,
+                taskId: this.listItem.id,
+            })
             this.editMode = false
         },
         closeWithoutSaving() {
@@ -74,7 +77,7 @@ export default {
         },
         deleteTask() {
             this.editMode = false
-            this.$emit('deleteTask', this.listItem.id)
+            this.$store.commit('deleteTask', { taskId: this.listItem.id })
             // this.$store.commit({
             //     type: 'deleteTask',
             //     taskId: this.listItem.id,
