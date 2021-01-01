@@ -4,7 +4,7 @@
         <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
         <timer-display class="timer__display" :timeAccrued="timeAccrued" />
         <timer-start-button
-            class="timer__start-button"
+            class="timer__start-btn"
             @startStopTimer="timerStartHandler"
             :isStarted="isStarted"
         />
@@ -103,6 +103,9 @@ export default {
     }
     &__display {
         font-size: 5rem;
+    }
+    &__start-btn {
+        margin-top: 1rem;
     }
 }
 </style>

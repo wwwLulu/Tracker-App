@@ -43,10 +43,6 @@ export default {
     width: 134px;
 }
 
-.flip-container {
-    perspective: 1000px;
-}
-
 .flip-container.active .flipper {
     transform: rotateY(180deg);
 }
