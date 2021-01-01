@@ -23,6 +23,7 @@
         @deleteTask="deleteTask"
         @addTask="addTask"
     ></the-list>
+    <timer />
 </template>
 
 <script>
