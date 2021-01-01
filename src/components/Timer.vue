@@ -2,7 +2,7 @@
     <h1>Timer</h1>
     <timer-input v-on:changeHandler="inputHandler" />
     <timer-start-button
-        v-on:startStopTimer="timerStartHandler"
+        @startStopTimer="timerStartHandler"
         :isStarted="isStarted"
     />
     <timer-display :timeLeft="timeLeft" />
@@ -51,6 +51,7 @@ export default {
             },
         }
     },
+    emits: ['startStopTimer'],
     methods: {
         timerStartHandler() {
             this.isStarted = !this.isStarted
@@ -60,6 +61,8 @@ export default {
                 if (this.isStarted) {
                     this.currentTime.milliseconds = date.getTime()
 
+                    // Getting the total amount of miliseconds so that it can
+                    // be recalculated into seconds, minutes and hours.
                     this.timeLeft.milliseconds =
                         this.inputedTimes.totalMils -
                         (this.currentTime.milliseconds -
@@ -76,9 +79,10 @@ export default {
                 }
             }
 
-            // Set new date only if the counter has started and the
-            // startTime hasn't been set
-            if (this.isStarted && this.startTime.milliseconds === null) {
+            const isStartTimeSet =
+                this.isStarted && this.startTime.milliseconds === null
+
+            if (!isStartTimeSet) {
                 const date = new Date()
                 this.startTime.milliseconds = date.getTime()
                 this.startTime.date = date.toString()
