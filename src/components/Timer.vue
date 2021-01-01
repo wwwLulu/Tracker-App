@@ -1,17 +1,19 @@
 <template>
     <h1>Timer</h1>
-    <TimerInput v-on:changeHandler="inputHandler" />
-    <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
-    <TimerDisplay :timeLeft="timeLeft" />
+    <timer-input v-on:changeHandler="inputHandler" />
+    <timer-start-button
+        v-on:startStopTimer="timerStartHandler"
+        :isStarted="isStarted"
+    />
+    <timer-display :timeLeft="timeLeft" />
 </template>
 
 <script>
-import TimerStartButton from "./TimerStartButton.vue"
-import TimerInput from "./TimerInput.vue"
-import TimerDisplay from "./TimerDisplay.vue"
+import TimerStartButton from './TimerStartButton.vue'
+import TimerInput from './TimerInput.vue'
+import TimerDisplay from './TimerDisplay.vue'
 
 export default {
-    name: "Timer",
     components: {
         TimerStartButton,
         TimerInput,
@@ -63,20 +65,11 @@ export default {
                         (this.currentTime.milliseconds -
                             this.startTime.milliseconds)
                     this.timeLeft.seconds =
-                        (this.inputedTimes.totalMils -
-                            (this.currentTime.milliseconds -
-                                this.startTime.milliseconds)) /
-                        1000
+                        (this.timeLeft.milliseconds / 1000) % 60
                     this.timeLeft.minutes =
-                        (this.inputedTimes.totalMils -
-                            (this.currentTime.milliseconds -
-                                this.startTime.milliseconds)) /
-                        60000
+                        (this.timeLeft.milliseconds / (1000 * 60)) % 60
                     this.timeLeft.hours =
-                        (this.inputedTimes.totalMils -
-                            (this.currentTime.milliseconds -
-                                this.startTime.milliseconds)) /
-                        3600000
+                        (this.timeLeft.milliseconds / (1000 * 60 * 60)) % 24
                     this.currentTime.date = date.toString()
                 } else {
                     clearInterval(interval)
@@ -100,17 +93,17 @@ export default {
             this.inputedTimes.minutes = minutes
             this.inputedTimes.seconds = seconds
             this.inputedTimes.totalMils =
-                this.convertToMilis("hours", hours) +
-                this.convertToMilis("minutes", minutes) +
-                this.convertToMilis("seconds", seconds)
+                this.convertToMilis('hours', hours) +
+                this.convertToMilis('minutes', minutes) +
+                this.convertToMilis('seconds', seconds)
         },
         convertToMilis(timeType, number) {
             switch (timeType) {
-                case "seconds":
+                case 'seconds':
                     return number * 1000
-                case "minutes":
+                case 'minutes':
                     return number * 60000
-                case "hours":
+                case 'hours':
                     return number * 3600000
                 default:
                     return

@@ -7,22 +7,21 @@
         </p>
         <p>
             Seconds Left:
-            {{ parseInt(timeLeft.seconds) || null }}
+            {{ countdown.seconds || null }}
         </p>
         <p>
             Minutes Left:
-            {{ parseInt(timeLeft.minutes) || null }}
+            {{ countdown.minutes || null }}
         </p>
         <p>
             Hours Left:
-            {{ parseInt(timeLeft.hours) || null }}
+            {{ countdown.hours || null }}
         </p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "TimerDisplay",
     props: {
         timeLeft: {
             milliseconds: Number,
