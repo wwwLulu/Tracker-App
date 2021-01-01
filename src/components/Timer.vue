@@ -7,6 +7,11 @@
     />
     <timer-display :currentTime="currentTime" />
     <p>{{ timeSinceStart.milliseconds }}</p>
+    <p>
+        {{ parseInt(timeSinceStart.hours) }}hr
+        {{ parseInt(timeSinceStart.minutes) }}m
+        {{ parseInt(timeSinceStart.seconds) }}s
+    </p>
 </template>
 
 <script>
