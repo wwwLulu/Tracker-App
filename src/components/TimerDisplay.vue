@@ -2,9 +2,9 @@
     <div>
         <h3>Timer</h3>
         <p>
-            {{ parseInt(timeAccrued.hours) }}hr
-            {{ parseInt(timeAccrued.minutes) }}m
-            {{ parseInt(timeAccrued.seconds) }}s
+            {{ parseInt(timeAccrued.hours) || '00' }}hr
+            {{ parseInt(timeAccrued.minutes) || '00' }}m
+            {{ parseInt(timeAccrued.seconds) || '00' }}s
         </p>
     </div>
 </template>
