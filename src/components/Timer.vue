@@ -49,7 +49,6 @@ export default {
             const getTimeAccrued = () => {
                 if (this.isStarted) {
                     this.timeAccrued.milliseconds += 100
-                    console.log(this.timeAccrued)
                     this.timeAccrued.seconds =
                         (this.timeAccrued.milliseconds / 1000) % 60
                     this.timeAccrued.minutes =
