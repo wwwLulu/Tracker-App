@@ -81,7 +81,8 @@ export default {
                     this.currentTime.milliseconds = new Date().getTime()
                     this.startCurrentDifference.milliseconds =
                         this.currentTime.milliseconds -
-                        this.startTime.milliseconds
+                        this.startTime.milliseconds -
+                        this.totalStoppedTime.milliseconds
 
                     this.startCurrentDifference.seconds =
                         (this.startCurrentDifference.milliseconds / 1000) % 60
