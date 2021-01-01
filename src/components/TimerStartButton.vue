@@ -39,8 +39,8 @@ export default {
 .flip-container,
 .front,
 .back {
-    height: 100px;
-    width: 200px;
+    height: 71px;
+    width: 134px;
 }
 
 .flip-container {
