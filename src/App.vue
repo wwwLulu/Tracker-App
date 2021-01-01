@@ -102,12 +102,10 @@ body {
 
 // Utilities
 .btn {
-    cursor: pointer;
-    transition: all 0.2s;
     &:hover {
-        transform: scale(0.98);
+        cursor: pointer;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-            0 4px 15px 0 rgba(0, 0, 0, 0.19);
+        0 4px 15px 0 rgba(0, 0, 0, 0.19);
     }
 }
 .btn-normal {

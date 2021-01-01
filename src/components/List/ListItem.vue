@@ -1,5 +1,5 @@
 <template>
-    <div @click="saveAndClose" v-if="editMode" class="modal"></div>
+    <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
         v-if="!editMode"
         class="task"
@@ -8,8 +8,13 @@
     >
         {{ listItem.task }}
         <i
+            ref="iconTrash"
+            @click="deleteTask"
+            class="task__trash fas fa-trash"
+        ></i>
+        <i
             @click="enableEditMode"
-            ref="icon"
+            ref="iconEdit"
             class="task__edit fas fa-edit"
         ></i>
     </p>
@@ -19,6 +24,7 @@
             v-model="updatedTask"
             autofocus
             ref="task_edit"
+            @keyup.enter="saveAndClose"
         >
         </textarea>
         <button @click="saveAndClose" class="task__save btn">Save</button>
@@ -46,10 +52,12 @@ export default {
     },
     methods: {
         showIcon() {
-            this.$refs.icon.style.opacity = 0.75
+            this.$refs.iconTrash.style.opacity = 0.75
+            this.$refs.iconEdit.style.opacity = 0.75
         },
         hideIcon() {
-            this.$refs.icon.style.opacity = 0
+            this.$refs.iconTrash.style.opacity = 0
+            this.$refs.iconEdit.style.opacity = 0
         },
         enableEditMode() {
             this.editMode = true
@@ -73,6 +81,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+}
 .task {
     min-height: 4rem;
     position: relative;
@@ -87,15 +98,21 @@ export default {
     &:hover {
         background: darken(white, 11);
     }
-    &__edit {
+    &__edit,
+    &__trash {
         position: absolute;
         top: 1rem;
-        right: 0.5rem;
         opacity: 0;
         &:hover {
             cursor: pointer;
             color: rgba(0, 0, 0, 0.3);
         }
+    }
+    &__edit {
+        right: 0.5rem;
+    }
+    &__trash {
+        left: 0.5rem;
     }
 }
 
