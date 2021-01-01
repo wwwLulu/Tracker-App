@@ -21,6 +21,7 @@
     <div v-if="editMode" class="task__edit-mode">
         <textarea
             class="task__edit-box"
+            placeholder="Enter task"
             v-model="updatedTask"
             autofocus
             ref="task_edit"

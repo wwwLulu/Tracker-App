@@ -92,17 +92,20 @@ export default {
 
 <style scoped lang="scss">
 .timer {
+    @media (max-width: 1000px) {
+        margin-top: 3rem;
+    }
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 10rem;
     margin-bottom: 3rem;
-    width: 40rem;
+    width: 30rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 30rem;
+    height: 20rem;
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 2rem;
     background-color: lightgrey;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.5rem;
