@@ -40,8 +40,8 @@ export default {
 .flip-container,
 .front,
 .back {
-    height: 71px;
-    width: 134px;
+    height: 44px;
+    width: 105px;
 }
 
 .flip-container.active .flipper {

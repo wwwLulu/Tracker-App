@@ -98,14 +98,16 @@ export default {
     align-items: center;
     height: 291px;
     text-align: center;
-    padding: 4rem;
+    padding: 4rem 2rem;
+    margin: 1rem;
     background-color: lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.5rem;
     &__title {
-        font-size: 4rem;
+        font-size: 3rem;
     }
     &__display {
-        font-size: 3rem;
+        font-size: 2.4rem;
     }
     &__start-btn {
         margin-top: 1rem;
