@@ -27,36 +27,41 @@ export default {
 
             isStarted: false,
 
+            totalTimeInputted: {
+                milliseconds: null,
+            },
+
             // StartTime allows us to use it for
             // 1. Data
             // 2. A way to get timeLeft by subtracting it from
             //    the current time
 
-            startTime: {
-                milliseconds: null,
-                date: null,
-            },
-            inputedTimes: {
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                totalMils: 0,
-            },
-            currentTime: {
-                milliseconds: null,
-                date: null,
-            },
-            timeLeft: {
-                milliseconds: null,
-                seconds: null,
-                minutes: null,
-                hours: null,
-            },
+            // startTime: {
+            //     milliseconds: null,
+            //     date: null,
+            // },
+            // inputedTimes: {
+            //     hours: 0,
+            //     minutes: 0,
+            //     seconds: 0,
+            //     totalMils: 0,
+            // },
+            // currentTime: {
+            //     milliseconds: null,
+            //     date: null,
+            // },
+            // timeLeft: {
+            //     milliseconds: null,
+            //     seconds: null,
+            //     minutes: null,
+            //     hours: null,
+            // },
         }
     },
     emits: ['startStopTimer'],
     methods: {
         timerStartHandler() {
+            this.isStarted = !this.isStarted
             // this.isStarted = !this.isStarted
             // console.log('isStarted changed')
             // const getCurrentTime = () => {
@@ -100,10 +105,10 @@ export default {
             // this.inputedTimes.hours = hours
             // this.inputedTimes.minutes = minutes
             // this.inputedTimes.seconds = seconds
-            // this.inputedTimes.totalMils =
-            //     this.convertToMilis('hours', hours) +
-            //     this.convertToMilis('minutes', minutes) +
-            //     this.convertToMilis('seconds', seconds)
+            this.totalTimeInputted.milliseconds =
+                this.convertToMilis('hours', hours) +
+                this.convertToMilis('minutes', minutes) +
+                this.convertToMilis('seconds', seconds)
         },
         convertToMilis(timeType, number) {
             switch (timeType) {
