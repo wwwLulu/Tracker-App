@@ -104,11 +104,5 @@ export default {
     &__display {
         font-size: 5rem;
     }
-    &__start-button {
-        color: var(--color-black);
-        font-size: 3.5rem;
-        font-weight: 600;
-        padding: 1.3rem 4rem;
-    }
 }
 </style>
