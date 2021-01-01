@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import Timer from '@/components/Timer/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
 
@@ -19,7 +17,11 @@ export default {
         Timer,
         TheList,
     },
-    computed: mapState(['tasks']),
+    computed: {
+        tasks() {
+            return this.$store.state.tasks
+        },
+    },
 }
 </script>
 
