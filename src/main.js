@@ -40,7 +40,7 @@ const store = createStore({
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
             console.log(state.tasks)
         },
-        addTask(state, status) {
+        addTask(state, { status }) {
             //When you delete then add a task, the ID's might get messed up
             // So reassigning is good here
             for (let i = 0; i < state.tasks.length; i++) {
@@ -60,8 +60,8 @@ const store = createStore({
         deleteTask(context) {
             context.commit('deleteTask')
         },
-        addTask(context, status) {
-            context.commit('addTask', status)
+        addTask(context, payload) {
+            context.commit('addTask', payload)
         },
     },
 })

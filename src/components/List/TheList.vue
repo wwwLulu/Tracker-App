@@ -50,7 +50,8 @@ export default {
             this.$store.commit('deleteTask', taskId)
         },
         addTask() {
-            this.$store.commit('addTask', this.mode)
+            const payload = { status: this.mode }
+            this.$store.commit('addTask', payload)
             this.toDoList = this.tasks.filter(item => item.status === this.mode)
         },
     },
