@@ -39,6 +39,15 @@ export default {
                 minutes: null,
                 hours: null,
             },
+            stoppedTime: {
+                milliseconds: null,
+            },
+            restartedTime: {
+                milliseconds: null,
+            },
+            totalStoppedTime: {
+                milliseconds: null,
+            },
         }
     },
     emits: ['startStopTimer'],
@@ -52,6 +61,12 @@ export default {
                 const date = new Date()
                 this.startTime.date = date.getDate()
                 this.startTime.milliseconds = date.getTime()
+            }
+
+            if (!this.isStarted) {
+                this.stoppedTime.milliseconds = new Date().getTime()
+            } else {
+                this.restartedTime.milliseconds = new Date().getTime()
             }
 
             const getTimeOccurred = () => {
