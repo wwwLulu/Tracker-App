@@ -38,32 +38,10 @@ export default {
         Timer,
         TheList,
     },
-    data() {
-        return {
-            tasks: [
-                {
-                    id: 1,
-                    task: 'Wash the dishes',
-                    status: 'to-do',
-                    focus: false,
-                },
-                {
-                    id: 2,
-                    task: 'Code a website',
-                    status: 'to-do',
-                },
-                {
-                    id: 3,
-                    task: 'Walk the dog',
-                    status: 'completed',
-                },
-                {
-                    id: 4,
-                    task: 'Playing Roblox',
-                    status: 'doing',
-                },
-            ],
-        }
+    computed: {
+        tasks() {
+            return this.$store.state.tasks
+        },
     },
     methods: {
         updateTask(updatedTask, taskId) {
