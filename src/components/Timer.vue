@@ -98,6 +98,9 @@ export default {
     align-items: center;
     height: 291px;
     text-align: center;
+    padding: 4rem;
+    background-color: lightgrey;
+    border-radius: 0.5rem;
     &__title {
         font-size: 8rem;
     }
