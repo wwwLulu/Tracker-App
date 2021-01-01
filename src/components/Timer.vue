@@ -1,6 +1,6 @@
 <template>
     <h1>Timer</h1>
-    <timer-input v-on:changeHandler="inputHandler" />
+    <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
     <timer-start-button
         @startStopTimer="timerStartHandler"
         :isStarted="isStarted"
@@ -10,13 +10,13 @@
 
 <script>
 import TimerStartButton from './TimerStartButton.vue'
-import TimerInput from './TimerInput.vue'
+// import TimerInput from './TimerInput.vue'
 import TimerDisplay from './TimerDisplay.vue'
 
 export default {
     components: {
         TimerStartButton,
-        TimerInput,
+        // TimerInput,
         TimerDisplay,
     },
     data() {
@@ -32,6 +32,8 @@ export default {
             totalTimeInputted: {
                 milliseconds: null,
             },
+
+            // Current not being used, saving it for "go-ahead"
             inputTime: {
                 milliseconds: null,
             },
@@ -84,3 +86,5 @@ export default {
     },
 }
 </script>
+
+<style scoped></style>
