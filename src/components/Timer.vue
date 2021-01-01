@@ -57,6 +57,7 @@ export default {
             this.isStarted = !this.isStarted
 
             const thereIsNoStartTime = this.startTime.milliseconds === null
+            const thereIsNoStopTime = this.stoppedTime.milliseconds === null
 
             if (thereIsNoStartTime) {
                 const date = new Date()
@@ -66,36 +67,34 @@ export default {
 
             if (!this.isStarted) {
                 this.stoppedTime.milliseconds = new Date().getTime()
-            } else if (
-                this.stoppedTime.milliseconds !== null &&
-                this.isStarted
-            ) {
+            } else if (!thereIsNoStopTime && this.isStarted) {
                 this.restartedTime.milliseconds = new Date().getTime()
-                this.totalStoppedTime.milliseconds +=
+                const difference =
                     this.restartedTime.milliseconds -
                     this.stoppedTime.milliseconds
+
+                this.totalStoppedTime.milliseconds += difference
             }
 
             const getTimeOccurred = () => {
                 if (this.isStarted) {
                     this.currentTime.milliseconds = new Date().getTime()
-                    this.startCurrentDifference.milliseconds =
+
+                    const timeTimerHasBeenActive =
                         this.currentTime.milliseconds -
                         this.startTime.milliseconds -
                         this.totalStoppedTime.milliseconds
 
+                    this.startCurrentDifference.milliseconds = timeTimerHasBeenActive
+
                     this.startCurrentDifference.seconds =
-                        (this.startCurrentDifference.milliseconds / 1000) % 60
+                        (timeTimerHasBeenActive / 1000) % 60
 
                     this.startCurrentDifference.minutes =
-                        (this.startCurrentDifference.milliseconds /
-                            (1000 * 60)) %
-                        60
+                        (timeTimerHasBeenActive / (1000 * 60)) % 60
 
                     this.startCurrentDifference.hours =
-                        (this.startCurrentDifference.milliseconds /
-                            (1000 * 60 * 60)) %
-                        24
+                        (timeTimerHasBeenActive / (1000 * 60 * 60)) % 24
                 } else {
                     clearInterval(interval)
                 }
