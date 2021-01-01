@@ -44,13 +44,13 @@ export default {
     },
     methods: {
         updateTask(updatedTask, taskId) {
-            this.$emit('updateTask', updatedTask, taskId)
+            this.$store.commit('updateTask', updatedTask, taskId)
         },
         deleteTask(taskId) {
-            this.$emit('deleteTask', taskId)
+            this.$store.commit('deleteTask', taskId)
         },
         addTask() {
-            this.$emit('addTask', this.mode)
+            this.$store.commit('addTask', this.mode)
             this.toDoList = this.tasks.filter(item => item.status === this.mode)
         },
     },

@@ -27,17 +27,7 @@ const store = createStore({
             ],
         }
     },
-    actions: {
-        updateTask(context) {
-            context.commit('updateTask')
-        },
-        deleteTask(context) {
-            context.commit('deleteTask')
-        },
-        addTask(context) {
-            context.commit('addTask')
-        },
-    },
+
     mutations: {
         updateTask(state, { updatedTask, taskId }) {
             state.tasks.forEach(entry => {
@@ -50,7 +40,7 @@ const store = createStore({
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
             console.log(state.tasks)
         },
-        addTask(state, { status }) {
+        addTask(state, status) {
             //When you delete then add a task, the ID's might get messed up
             // So reassigning is good here
             for (let i = 0; i < state.tasks.length; i++) {
@@ -61,6 +51,17 @@ const store = createStore({
                 id: state.tasks.length + 1,
                 status,
             })
+        },
+    },
+    actions: {
+        updateTask(context) {
+            context.commit('updateTask')
+        },
+        deleteTask(context) {
+            context.commit('deleteTask')
+        },
+        addTask(context, status) {
+            context.commit('addTask', status)
         },
     },
 })
