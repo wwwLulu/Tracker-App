@@ -1,28 +1,31 @@
 <template>
-    <the-list
-        title="To-Do"
-        :tasks="tasks"
-        mode="to-do"
-        @updateTask="updateTask"
-        @deleteTask="deleteTask"
-        @addTask="addTask"
-    ></the-list>
-    <the-list
-        title="Doing"
-        :tasks="tasks"
-        mode="doing"
-        @updateTask="updateTask"
-        @deleteTask="deleteTask"
-        @addTask="addTask"
-    ></the-list>
-    <the-list
-        title="Completed"
-        :tasks="tasks"
-        mode="completed"
-        @updateTask="updateTask"
-        @deleteTask="deleteTask"
-        @addTask="addTask"
-    ></the-list>
+    <main>
+        <the-list
+            title="To-Do"
+            :tasks="tasks"
+            mode="to-do"
+            @updateTask="updateTask"
+            @deleteTask="deleteTask"
+            @addTask="addTask"
+        ></the-list>
+        <the-list
+            title="Doing"
+            :tasks="tasks"
+            mode="doing"
+            @updateTask="updateTask"
+            @deleteTask="deleteTask"
+            @addTask="addTask"
+        ></the-list>
+        <the-list
+            title="Completed"
+            :tasks="tasks"
+            mode="completed"
+            @updateTask="updateTask"
+            @deleteTask="deleteTask"
+            @addTask="addTask"
+        ></the-list>
+    </main>
+
     <timer />
 </template>
 
@@ -109,11 +112,23 @@ html {
     box-sizing: border-box;
 }
 body {
+    width: 120rem;
     background: slategray;
     width: 100%;
     display: flex;
     justify-content: center;
     font-family: var(--normal-font);
+}
+
+main {
+    width: 120rem;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 1200px) {
+        width: inherit;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
 // Utilities

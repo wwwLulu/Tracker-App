@@ -92,14 +92,16 @@ export default {
 
 <style scoped lang="scss">
 .timer {
+    margin: 0 auto;
+    margin-top: 10rem;
+    width: 40rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 291px;
+    height: 30rem;
     text-align: center;
     padding: 4rem 2rem;
-    margin: 1rem;
     background-color: lightgrey;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.5rem;
