@@ -23,13 +23,16 @@
         @deleteTask="deleteTask"
         @addTask="addTask"
     ></the-list>
+    <timer />
 </template>
 
 <script>
+import Timer from '@/components/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
 
 export default {
     components: {
+        Timer,
         TheList,
     },
     data() {

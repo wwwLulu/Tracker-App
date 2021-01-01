@@ -1,116 +1,86 @@
 <template>
-    <h1>Timer</h1>
-    <TimerInput v-on:changeHandler="inputHandler" />
-    <TimerStartButton v-on:start="timerStartHandler" :isStarted="isStarted" />
-    <TimerDisplay :timeLeft="timeLeft" />
+    <div class="timer">
+        <h1 class="timer__title">Focus</h1>
+        <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
+        <timer-display class="timer__display" :timeAccrued="timeAccrued" />
+        <timer-start-button
+            class="timer__start-btn"
+            @startStopTimer="timerStartHandler"
+            :isStarted="isStarted"
+        />
+    </div>
 </template>
 
 <script>
-import TimerStartButton from "./TimerStartButton.vue"
-import TimerInput from "./TimerInput.vue"
-import TimerDisplay from "./TimerDisplay.vue"
+import TimerStartButton from './TimerStartButton.vue'
+// import TimerInput from './TimerInput.vue'
+import TimerDisplay from './TimerDisplay.vue'
 
 export default {
-    name: "Timer",
     components: {
         TimerStartButton,
-        TimerInput,
+        // TimerInput,
         TimerDisplay,
     },
     data() {
         return {
-            // IsStarted handles both the button title and
-            // serves as a good handler for clearing the interval
-            // in getCurrentTime()
             isStarted: false,
-            // StartTime allows us to use it for
-            // 1. Data
-            // 2. A way to get timeLeft by subtracting it from
-            //    the current time
-            startTime: {
-                milliseconds: null,
-                date: null,
-            },
-            inputedTimes: {
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                totalMils: 0,
-            },
-            currentTime: {
-                milliseconds: null,
-                date: null,
-            },
-            timeLeft: {
+            dateStarted: null,
+            timeAccrued: {
                 milliseconds: null,
                 seconds: null,
                 minutes: null,
                 hours: null,
             },
+            totalTimeInputted: {
+                milliseconds: null,
+            },
+
+            // Current not being used, saving it for "go-ahead"
+            inputTime: {
+                milliseconds: null,
+            },
         }
     },
+    emits: ['startStopTimer'],
     methods: {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            const getCurrentTime = () => {
-                const date = new Date()
-                if (this.isStarted) {
-                    this.currentTime.milliseconds = date.getTime()
+            if (this.timeAccrued.milliseconds !== null) {
+                this.dateStarted = new Date().getDate()
+            }
 
-                    this.timeLeft.milliseconds =
-                        this.inputedTimes.totalMils -
-                        (this.currentTime.milliseconds -
-                            this.startTime.milliseconds)
-                    this.timeLeft.seconds =
-                        (this.inputedTimes.totalMils -
-                            (this.currentTime.milliseconds -
-                                this.startTime.milliseconds)) /
-                        1000
-                    this.timeLeft.minutes =
-                        (this.inputedTimes.totalMils -
-                            (this.currentTime.milliseconds -
-                                this.startTime.milliseconds)) /
-                        60000
-                    this.timeLeft.hours =
-                        (this.inputedTimes.totalMils -
-                            (this.currentTime.milliseconds -
-                                this.startTime.milliseconds)) /
-                        3600000
-                    this.currentTime.date = date.toString()
+            const getTimeAccrued = () => {
+                if (this.isStarted) {
+                    this.timeAccrued.milliseconds += 100
+                    this.timeAccrued.seconds =
+                        (this.timeAccrued.milliseconds / 1000) % 60
+                    this.timeAccrued.minutes =
+                        (this.timeAccrued.milliseconds / (1000 * 60)) % 60
+                    this.timeAccrued.hours =
+                        (this.timeAccrued.milliseconds / (1000 * 60 * 60)) % 24
                 } else {
                     clearInterval(interval)
                 }
             }
-
-            // Set new date only if the counter has started and the
-            // startTime hasn't been set
-            if (this.isStarted && this.startTime.milliseconds === null) {
-                const date = new Date()
-                this.startTime.milliseconds = date.getTime()
-                this.startTime.date = date.toString()
-            }
-
-            const interval = setInterval(() => {
-                getCurrentTime()
-            }, 1)
+            let interval = setInterval(() => {
+                getTimeAccrued()
+            }, 100)
         },
         inputHandler(hours, minutes, seconds) {
-            this.inputedTimes.hours = hours
-            this.inputedTimes.minutes = minutes
-            this.inputedTimes.seconds = seconds
-            this.inputedTimes.totalMils =
-                this.convertToMilis("hours", hours) +
-                this.convertToMilis("minutes", minutes) +
-                this.convertToMilis("seconds", seconds)
+            this.inputTime.milliseconds =
+                this.convertToMilis('hours', hours) +
+                this.convertToMilis('minutes', minutes) +
+                this.convertToMilis('seconds', seconds)
         },
         convertToMilis(timeType, number) {
             switch (timeType) {
-                case "seconds":
+                case 'seconds':
                     return number * 1000
-                case "minutes":
+                case 'minutes':
                     return number * 60000
-                case "hours":
+                case 'hours':
                     return number * 3600000
                 default:
                     return
@@ -119,3 +89,28 @@ export default {
     },
 }
 </script>
+
+<style scoped lang="scss">
+.timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 291px;
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 1rem;
+    background-color: lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5rem;
+    &__title {
+        font-size: 3rem;
+    }
+    &__display {
+        font-size: 2.4rem;
+    }
+    &__start-btn {
+        margin-top: 1rem;
+    }
+}
+</style>

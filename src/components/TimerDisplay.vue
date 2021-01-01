@@ -1,30 +1,17 @@
 <template>
     <div>
-        <h3>Timer</h3>
         <p>
-            Miliseconds Left:
-            {{ timeLeft.milliseconds }}
-        </p>
-        <p>
-            Seconds Left:
-            {{ parseInt(timeLeft.seconds) || null }}
-        </p>
-        <p>
-            Minutes Left:
-            {{ parseInt(timeLeft.minutes) || null }}
-        </p>
-        <p>
-            Hours Left:
-            {{ parseInt(timeLeft.hours) || null }}
+            {{ parseInt(timeAccrued.hours) || '0' }}hr
+            {{ parseInt(timeAccrued.minutes) || '00' }}m
+            {{ parseInt(timeAccrued.seconds) || '00' }}s
         </p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "TimerDisplay",
     props: {
-        timeLeft: {
+        timeAccrued: {
             milliseconds: Number,
             seconds: Number,
             minutes: Number,
@@ -33,3 +20,5 @@ export default {
     },
 }
 </script>
+
+<style lang="scss" scoped></style>
