@@ -18,6 +18,11 @@ export default {
             hours: Number,
         },
     },
+    computed: {
+        tasks() {
+            return this.$state.tasks
+        },
+    },
 }
 </script>
 
