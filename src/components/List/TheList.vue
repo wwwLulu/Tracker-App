@@ -1,20 +1,22 @@
 <template>
-    <div class="card">
-        <div class="card__top">
-            <h3 class="card__title">{{ title }}</h3>
-            <i class="card__menu fas fa-ellipsis-h"></i>
-        </div>
+    <div class="container">
+        <div class="card">
+            <div class="card__top">
+                <h3 class="card__title">{{ title }}</h3>
+                <i class="card__menu fas fa-ellipsis-h"></i>
+            </div>
 
-        <list-item
-            v-for="listItem in toDoList"
-            :key="listItem.id"
-            :listItem="listItem"
-            @updateTask="updateTask"
-            @deleteTask="deleteTask"
-        ></list-item>
-        <button @click="addTask" class="card__add btn-normal btn">
-            &#43; Add another card
-        </button>
+            <list-item
+                v-for="listItem in toDoList"
+                :key="listItem.id"
+                :listItem="listItem"
+                @updateTask="updateTask"
+                @deleteTask="deleteTask"
+            ></list-item>
+            <button @click="addTask" class="card__add btn-normal btn">
+                &#43; Add another card
+            </button>
+        </div>
     </div>
 </template>
 
