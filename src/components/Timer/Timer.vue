@@ -1,7 +1,6 @@
 <template>
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
-        <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
         <timer-display
             class="timer__display"
             :timeOccurred="startCurrentDifference"
@@ -11,7 +10,6 @@
             @startStopTimer="timerStartHandler"
             :isStarted="isStarted"
         />
-        <p>{{ totalStoppedTime.milliseconds }}</p>
     </div>
 </template>
 
