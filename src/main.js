@@ -66,8 +66,7 @@ const store = createStore({
 })
 
 const app = createApp(App)
+
 app.use(store)
 
-createApp(App).mount('#app')
-
-// this.$store.commit('deleteTask')
+app.mount('#app')
