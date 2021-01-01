@@ -2,7 +2,10 @@
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
         <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
-        <timer-display class="timer__display" :timeOccurred="timeOccurred" />
+        <timer-display
+            class="timer__display"
+            :timeOccurred="startCurrentDifference"
+        />
         <timer-start-button
             class="timer__start-btn"
             @startStopTimer="timerStartHandler"
@@ -13,13 +16,11 @@
 
 <script>
 import TimerStartButton from './TimerStartButton.vue'
-// import TimerInput from './TimerInput.vue'
 import TimerDisplay from './TimerDisplay.vue'
 
 export default {
     components: {
         TimerStartButton,
-        // TimerInput,
         TimerDisplay,
     },
     data() {
@@ -32,6 +33,12 @@ export default {
             currentTime: {
                 milliseconds: null,
             },
+            startCurrentDifference: {
+                milliseconds: null,
+                seconds: null,
+                minutes: null,
+                hours: null,
+            },
         }
     },
     emits: ['startStopTimer'],
@@ -39,7 +46,9 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            if (this.startTime.milliseconds === null) {
+            const thereIsNoStartTime = this.startTime.milliseconds === null
+
+            if (thereIsNoStartTime) {
                 const date = new Date()
                 this.startTime.date = date.getDate()
                 this.startTime.milliseconds = date.getTime()
@@ -48,13 +57,22 @@ export default {
             const getTimeOccurred = () => {
                 if (this.isStarted) {
                     this.currentTime.milliseconds = new Date().getTime()
-                    this.timeOccurred.milliseconds += 100
-                    this.timeOccurred.seconds =
-                        (this.timeOccurred.milliseconds / 1000) % 60
-                    this.timeOccurred.minutes =
-                        (this.timeOccurred.milliseconds / (1000 * 60)) % 60
-                    this.timeOccurred.hours =
-                        (this.timeOccurred.milliseconds / (1000 * 60 * 60)) % 24
+                    this.startCurrentDifference.milliseconds =
+                        this.currentTime.milliseconds -
+                        this.startTime.milliseconds
+
+                    this.startCurrentDifference.seconds =
+                        (this.startCurrentDifference.milliseconds / 1000) % 60
+
+                    this.startCurrentDifference.minutes =
+                        (this.startCurrentDifference.milliseconds /
+                            (1000 * 60)) %
+                        60
+
+                    this.startCurrentDifference.hours =
+                        (this.startCurrentDifference.milliseconds /
+                            (1000 * 60 * 60)) %
+                        24
                 } else {
                     clearInterval(interval)
                 }
