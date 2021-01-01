@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p>{{ doingTask[0].task }}</p>
         <p>
             {{ parseInt(timeOccurred.hours) || '0' }}hr
             {{ parseInt(timeOccurred.minutes) || '00' }}m
@@ -16,6 +17,11 @@ export default {
             seconds: Number,
             minutes: Number,
             hours: Number,
+        },
+    },
+    computed: {
+        doingTask() {
+            return this.$store.getters.currentTodo
         },
     },
 }
