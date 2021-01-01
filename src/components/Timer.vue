@@ -51,6 +51,9 @@ export default {
 
             timeSinceStart: {
                 milliseconds: null,
+                seconds: null,
+                minutes: null,
+                hours: null,
             },
         }
     },
@@ -71,6 +74,13 @@ export default {
                     this.timeSinceStart.milliseconds =
                         this.currentTime.milliseconds -
                         this.startTime.milliseconds
+                    this.timeSinceStart.seconds =
+                        (this.timeSinceStart.milliseconds / 1000) % 60
+                    this.timeSinceStart.minutes =
+                        (this.timeSinceStart.milliseconds / (1000 * 60)) % 60
+                    this.timeSinceStart.hours =
+                        (this.timeSinceStart.milliseconds / (1000 * 60 * 60)) %
+                        24
                 } else {
                     clearInterval(interval)
                 }
