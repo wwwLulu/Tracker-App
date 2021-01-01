@@ -5,13 +5,7 @@
         @startStopTimer="timerStartHandler"
         :isStarted="isStarted"
     />
-    <timer-display :currentTime="currentTime" />
-    <p>{{ timeSinceStart.milliseconds }}</p>
-    <p>
-        {{ parseInt(timeSinceStart.hours) }}hr
-        {{ parseInt(timeSinceStart.minutes) }}m
-        {{ parseInt(timeSinceStart.seconds) }}s
-    </p>
+    <timer-display :timeAccrued="timeAccrued" />
 </template>
 
 <script>
@@ -27,38 +21,19 @@ export default {
     },
     data() {
         return {
-            // IsStarted handles both the button title and
-            // serves as a good handler for clearing the interval
-            // in getTimeSinceStart()
-
             isStarted: false,
-
-            totalTimeInputted: {
-                milliseconds: null,
-            },
-
-            // Getting an actual date for the DB.
-            // Getting milliseconds for simple and accurate conversions.
-
-            startTime: {
-                date: null,
-                milliseconds: null,
-            },
-
-            currentTime: {
-                milliseconds: null,
-            },
-
-            stopTime: {
-                date: null,
-                milliseconds: null,
-            },
-
-            timeSinceStart: {
+            dateStarted: null,
+            timeAccrued: {
                 milliseconds: null,
                 seconds: null,
                 minutes: null,
                 hours: null,
+            },
+            totalTimeInputted: {
+                milliseconds: null,
+            },
+            inputTime: {
+                milliseconds: null,
             },
         }
     },
@@ -67,35 +42,30 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            if (this.startTime.milliseconds === null) {
-                const date = new Date()
-                this.startTime.milliseconds = date.getTime()
-                this.startTime.date = date.toString()
+            if (this.timeAccrued.milliseconds !== null) {
+                this.dateStarted = new Date().getDate()
             }
 
-            const getTimeSinceStart = () => {
+            const getTimeAccrued = () => {
                 if (this.isStarted) {
-                    this.currentTime.milliseconds = new Date().getTime()
-                    this.timeSinceStart.milliseconds =
-                        this.currentTime.milliseconds -
-                        this.startTime.milliseconds
-                    this.timeSinceStart.seconds =
-                        (this.timeSinceStart.milliseconds / 1000) % 60
-                    this.timeSinceStart.minutes =
-                        (this.timeSinceStart.milliseconds / (1000 * 60)) % 60
-                    this.timeSinceStart.hours =
-                        (this.timeSinceStart.milliseconds / (1000 * 60 * 60)) %
-                        24
+                    this.timeAccrued.milliseconds += 100
+                    console.log(this.timeAccrued)
+                    this.timeAccrued.seconds =
+                        (this.timeAccrued.milliseconds / 1000) % 60
+                    this.timeAccrued.minutes =
+                        (this.timeAccrued.milliseconds / (1000 * 60)) % 60
+                    this.timeAccrued.hours =
+                        (this.timeAccrued.milliseconds / (1000 * 60 * 60)) % 24
                 } else {
                     clearInterval(interval)
                 }
             }
             let interval = setInterval(() => {
-                getTimeSinceStart()
-            }, 1)
+                getTimeAccrued()
+            }, 100)
         },
         inputHandler(hours, minutes, seconds) {
-            this.totalTimeInputted.milliseconds =
+            this.inputTime.milliseconds =
                 this.convertToMilis('hours', hours) +
                 this.convertToMilis('minutes', minutes) +
                 this.convertToMilis('seconds', seconds)
