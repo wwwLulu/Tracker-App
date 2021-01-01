@@ -25,6 +25,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn {
+    font-size: 3.5rem;
+    color: var(--color-black);
+    padding: 1.5rem 3rem;
+    border-radius: 1rem;
+}
+
+/* Everything below is for the Flipper */
 .flip-container {
     perspective: 1000px;
 }
