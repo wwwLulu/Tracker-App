@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h3>Timer</h3>
         <p>
             {{ parseInt(timeAccrued.hours) || '00' }}hr
             {{ parseInt(timeAccrued.minutes) || '00' }}m

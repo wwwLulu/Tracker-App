@@ -2,12 +2,12 @@
     <div class="timer">
         <h1 class="timer__title">Timer</h1>
         <!-- <timer-input v-on:changeHandler="inputHandler" /> -->
+        <timer-display class="timer__display" :timeAccrued="timeAccrued" />
         <timer-start-button
             class="timer__start-button"
             @startStopTimer="timerStartHandler"
             :isStarted="isStarted"
         />
-        <timer-display class="timer__display" :timeAccrued="timeAccrued" />
     </div>
 </template>
 
@@ -94,7 +94,14 @@ export default {
 .timer {
     text-align: center;
     &__title {
-        font-size: 6rem;
+        font-size: 8rem;
+    }
+    &__display {
+        font-size: 5rem;
+    }
+    &__start-button {
+        font-size: 2rem;
+        font-weight: 600;
     }
 }
 </style>
