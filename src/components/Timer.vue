@@ -80,15 +80,16 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            let interval
-
-            if (this.isStarted) {
-                interval = setInterval(() => {
+            const getCurrentTime = () => {
+                if (this.isStarted) {
                     this.currentTime.milliseconds = new Date().getTime()
-                }, 1)
-            } else {
-                clearInterval(interval)
+                } else {
+                    clearInterval(interval)
+                }
             }
+            let interval = setInterval(() => {
+                getCurrentTime()
+            }, 1)
             // this.isStarted = !this.isStarted
             // console.log('isStarted changed')
             // const getCurrentTime = () => {
