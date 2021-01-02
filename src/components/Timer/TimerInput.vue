@@ -22,12 +22,12 @@
 
 <script>
 export default {
-    name: "TimerInput",
+    name: 'TimerInput',
     data() {
         return {
-            hours: "",
-            minutes: "",
-            seconds: "",
+            hours: '',
+            minutes: '',
+            seconds: '',
         }
     },
 }

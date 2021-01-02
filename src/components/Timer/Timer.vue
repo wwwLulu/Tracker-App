@@ -25,10 +25,6 @@ export default {
     data() {
         return {
             isStarted: false,
-
-            // Added a date so the start time can be sent to
-            // a database.
-
             startTime: {
                 date: '',
                 milliseconds: null,
@@ -42,15 +38,6 @@ export default {
                 minutes: null,
                 hours: null,
             },
-
-            // These three Times underneath are used to track
-            // active time by calculating differences
-            // between each.
-
-            // This is because the Date object is being
-            // used in order to be able to still hold
-            // time outside of the browser.
-
             stoppedTime: {
                 milliseconds: null,
             },
@@ -87,7 +74,6 @@ export default {
                 this.totalStoppedTime.milliseconds += difference
             }
 
-            // This is an interval (check below this function)
             const getTimeOccurred = () => {
                 if (this.isStarted) {
                     this.currentTime.milliseconds = new Date().getTime()

@@ -20,17 +20,11 @@ export default {
         },
     },
     computed: {
-        currentTodoName() {
-            if (this.$store.getters.currentTodo)
-                return this.$store.getters.currentTodo.task
-            else return 'Add a task'
+        doingTask() {
+            return this.$store.getters.currentTodo
         },
     },
 }
 </script>
 
-<style lang="scss" scoped>
-.todo-name {
-    font-size: 2.3rem;
-}
-</style>
+<style lang="scss" scoped></style>

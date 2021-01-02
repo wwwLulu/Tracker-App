@@ -100,7 +100,10 @@ export default {
             this.editMode = false
         },
         saveAndClose() {
-            this.$emit('updateTask', this.updatedTask, this.listItem.id)
+            this.$store.commit('updateTask', {
+                updatedTask: this.updatedTask,
+                taskId: this.listItem.id,
+            })
             this.editMode = false
         },
         closeWithoutSaving() {
@@ -131,7 +134,7 @@ export default {
     margin: 1rem 0;
     background: white;
     border-radius: 0.5rem;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem;
     font-size: 1.4rem;
     font-weight: 300;
     border-left: 0.1rem rgba(0, 0, 0, 0.3) solid;
