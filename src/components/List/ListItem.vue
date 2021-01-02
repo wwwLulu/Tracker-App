@@ -1,4 +1,6 @@
 <template>
+    <p>time active {{ listItem }}</p>
+
     <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
         draggable="true"
@@ -22,6 +24,7 @@
             class="task__edit fas fa-edit"
         ></i>
     </p>
+
     <div v-if="editMode" class="task__edit-mode">
         <textarea
             class="task__edit-box"

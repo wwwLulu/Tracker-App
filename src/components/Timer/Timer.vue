@@ -8,6 +8,7 @@
             :isStarted="isStarted"
         />
     </div>
+    <p>{{ currentListItem }}</p>
 </template>
 
 <script>
@@ -45,7 +46,7 @@ export default {
             return this.$store.state.totalActiveTime
         },
         currentListItem() {
-            return this.$store.getters.currentTodo
+            return this.$store.getters.currentTodo[0]
         },
     },
     emits: ['startStopTimer'],
