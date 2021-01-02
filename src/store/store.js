@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
+            listHovered: '',
             tasks: [
                 {
                     id: 1,
@@ -38,6 +39,24 @@ const store = createStore({
     },
 
     mutations: {
+        dragDrop(state, { taskId }) {
+            state.tasks.forEach(entry => {
+                if (entry.id == taskId) {
+                    entry.status = state.listHovered
+                }
+            })
+            //Line below is a way for Tasks to appear updated to watchers since the line above wont indicate that
+            state.tasks = state.tasks.map(task => task)
+        },
+        updateStatus(state, { taskId, status }) {
+            state.tasks.forEach(entry => {
+                if (entry.id == taskId) {
+                    entry.status = status
+                }
+            })
+            //Line below is a way for Tasks to appear updated to watchers since the line above wont indicate that
+            state.tasks = state.tasks.map(task => task)
+        },
         updateTask(state, { updatedTask, taskId }) {
             state.tasks.forEach(entry => {
                 if (entry.id == taskId) {
@@ -58,6 +77,7 @@ const store = createStore({
                 task: ' ',
                 id: state.tasks.length + 1,
                 status,
+                focus: false,
             })
         },
     },

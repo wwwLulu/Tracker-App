@@ -1,10 +1,14 @@
 <template>
     <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
+        draggable="true"
+        ref="taskText"
         v-if="!editMode"
         class="task"
         @mouseenter="showIcon"
         @mouseleave="hideIcon"
+        @dragstart="startDrag"
+        @dragend="endDrag(), dragDrop()"
     >
         {{ listItem.task }}
         <i
@@ -35,6 +39,18 @@
         >
             Close
         </button>
+        <select
+            class="btn"
+            @change="updateStatus"
+            name="mode"
+            ref="status"
+            v-model="currentStatus"
+        >
+            <optgroup :label="listItem.status">listItem.status</optgroup>
+            <option value="to-do">to-do</option>
+            <option value="doing">doing</option>
+            <option value="completed">completed</option>
+        </select>
     </div>
 </template>
 
@@ -47,16 +63,35 @@ export default {
         return {
             editMode: this.listItem.task == ' ' ? true : false,
             updatedTask: this.listItem.task || ' ',
+            currentStatus: this.listItem.status,
         }
     },
     methods: {
+        dragDrop() {
+            console.log('dropped')
+            this.$store.commit('dragDrop', {
+                taskId: this.listItem.id,
+            })
+        },
+        startDrag() {
+            this.$refs.taskText.style.transform = 'skewY(2deg)'
+            setTimeout(() => (this.$refs.taskText.style.visibility = 'hidden'))
+        },
+        endDrag() {
+            this.$refs.taskText.style.transform = 'skewY(0deg)'
+            setTimeout(() => (this.$refs.taskText.style.visibility = 'visible'))
+        },
         showIcon() {
-            this.$refs.iconTrash.style.opacity = 0.75
-            this.$refs.iconEdit.style.opacity = 0.75
+            this.$refs.iconTrash.style.opacity = 0.7
+            this.$refs.iconEdit.style.opacity = 0.7
+            this.$refs.taskText.style.paddingLeft = '2.2rem'
+            this.$refs.taskText.style.paddingRight = '2.2rem'
         },
         hideIcon() {
             this.$refs.iconTrash.style.opacity = 0
             this.$refs.iconEdit.style.opacity = 0
+            this.$refs.taskText.style.paddingLeft = '1rem'
+            this.$refs.taskText.style.paddingRight = '1rem'
         },
         enableEditMode() {
             this.editMode = true
@@ -74,6 +109,12 @@ export default {
         deleteTask() {
             this.editMode = false
             this.$store.commit('deleteTask', { taskId: this.listItem.id })
+        },
+        updateStatus() {
+            this.$store.commit('updateStatus', {
+                taskId: this.listItem.id,
+                status: this.$refs.status.value,
+            })
         },
     },
 }
@@ -99,13 +140,10 @@ export default {
     }
     &__edit,
     &__trash {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         height: 100%;
         font-size: 1.2em;
         position: absolute;
-        top: 0rem;
+        top: 1rem;
         opacity: 0;
         &:hover {
             cursor: pointer;
@@ -118,6 +156,11 @@ export default {
     &__trash {
         left: 0.5rem;
     }
+    &__status-label {
+        color: white;
+        font-size: 1rem;
+        display: inline-block;
+    }
 }
 
 .task__edit-mode {
@@ -127,6 +170,7 @@ export default {
 .task__edit-box {
     z-index: 1110;
     width: 100%;
+    height: 10rem;
     margin: 1rem 0;
     background: white;
     border-radius: 0.5rem;

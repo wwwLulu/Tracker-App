@@ -5,12 +5,14 @@
                 <h3 class="card__title">{{ title }}</h3>
                 <i class="card__menu fas fa-ellipsis-h"></i>
             </div>
-
+            <div class="task"></div>
             <list-item
                 v-for="listItem in toDoList"
                 :key="listItem.id"
                 :listItem="listItem"
             ></list-item>
+            <div class="task"></div>
+
             <button @click="addTask" class="card__add btn-normal btn">
                 &#43; Add another card
             </button>
@@ -32,6 +34,7 @@ export default {
     data() {
         return {
             toDoList: this.tasks.filter(item => item.status === this.mode),
+            dragging: false,
         }
     },
     watch: {
@@ -40,6 +43,9 @@ export default {
         },
     },
     methods: {
+        draggingListItem(dragging) {
+            this.dragging = dragging ? true : false
+        },
         addTask() {
             const payload = { status: this.mode }
             this.$store.commit('addTask', payload)

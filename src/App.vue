@@ -1,8 +1,23 @@
 <template>
     <main>
-        <the-list title="To-Do" :tasks="tasks" mode="to-do"></the-list>
-        <the-list title="Doing" :tasks="tasks" mode="doing"></the-list>
-        <the-list title="Completed" :tasks="tasks" mode="completed"></the-list>
+        <the-list
+            @dragover="dragOver('to-do')"
+            title="To-Do"
+            :tasks="tasks"
+            mode="to-do"
+        ></the-list>
+        <the-list
+            @dragover="dragOver('doing')"
+            title="Doing"
+            :tasks="tasks"
+            mode="doing"
+        ></the-list>
+        <the-list
+            @dragover="dragOver('completed')"
+            title="Completed"
+            :tasks="tasks"
+            mode="completed"
+        ></the-list>
     </main>
 
     <timer />
@@ -20,6 +35,11 @@ export default {
     computed: {
         tasks() {
             return this.$store.state.tasks
+        },
+    },
+    methods: {
+        dragOver(mode) {
+            this.$store.state.listHovered = mode
         },
     },
 }

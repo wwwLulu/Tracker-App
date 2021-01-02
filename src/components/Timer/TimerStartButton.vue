@@ -26,9 +26,9 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--color-black);
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     background-color: #aaa;
 }
