@@ -102,9 +102,13 @@ export default {
     }
     &__edit,
     &__trash {
-        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 1.2em;
         position: absolute;
-        top: 1rem;
+        top: 0rem;
         opacity: 0;
         &:hover {
             cursor: pointer;
