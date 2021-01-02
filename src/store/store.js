@@ -31,9 +31,8 @@ const store = createStore({
 
     getters: {
         todos: state => state.tasks.filter(task => task.status === 'to-do'),
-
-        currentTodo: state => state.tasks.find(task => task.status === 'doing'),
-
+        currentTodo: state =>
+            state.tasks.filter(task => task.status === 'doing'),
         completedTodos: state =>
             state.tasks.filter(task => task.status === 'completed'),
     },
@@ -68,7 +67,7 @@ const store = createStore({
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
         },
         addTask(state, { status }) {
-            // When you delete then add a task, the ID's might get messed up
+            //When you delete then add a task, the ID's might get messed up
             // So reassigning is good here
             for (let i = 0; i < state.tasks.length; i++) {
                 state.tasks[i].id = i + 1
