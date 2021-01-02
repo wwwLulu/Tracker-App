@@ -74,9 +74,11 @@ export default {
             })
         },
         startDrag() {
+            this.$refs.taskText.style.transform = 'skewY(2deg)'
             setTimeout(() => (this.$refs.taskText.style.visibility = 'hidden'))
         },
         endDrag() {
+            this.$refs.taskText.style.transform = 'skewY(0deg)'
             setTimeout(() => (this.$refs.taskText.style.visibility = 'visible'))
         },
         showIcon() {
