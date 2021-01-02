@@ -1,10 +1,7 @@
 <template>
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
-        <timer-display
-            class="timer__display"
-            :timeOccurred="startCurrentDifference"
-        />
+        <timer-display class="timer__display" :timeOccurred="totalActiveTime" />
         <timer-start-button
             class="timer__start-btn"
             @startStopTimer="timerStartHandler"
@@ -32,7 +29,7 @@ export default {
             currentTime: {
                 milliseconds: null,
             },
-            startCurrentDifference: {
+            totalActiveTime: {
                 milliseconds: null,
                 seconds: null,
                 minutes: null,
@@ -83,15 +80,15 @@ export default {
                         this.startTime.milliseconds -
                         this.totalStoppedTime.milliseconds
 
-                    this.startCurrentDifference.milliseconds = timeTimerHasBeenActive
+                    this.totalActiveTime.milliseconds = timeTimerHasBeenActive
 
-                    this.startCurrentDifference.seconds =
+                    this.totalActiveTime.seconds =
                         (timeTimerHasBeenActive / 1000) % 60
 
-                    this.startCurrentDifference.minutes =
+                    this.totalActiveTime.minutes =
                         (timeTimerHasBeenActive / (1000 * 60)) % 60
 
-                    this.startCurrentDifference.hours =
+                    this.totalActiveTime.hours =
                         (timeTimerHasBeenActive / (1000 * 60 * 60)) % 24
                 } else {
                     clearInterval(interval)
