@@ -1,6 +1,7 @@
 <template>
     <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
+        ref="taskText"
         v-if="!editMode"
         class="task"
         @mouseenter="showIcon"
@@ -51,12 +52,14 @@ export default {
     },
     methods: {
         showIcon() {
-            this.$refs.iconTrash.style.opacity = 0.75
-            this.$refs.iconEdit.style.opacity = 0.75
+            this.$refs.iconTrash.style.opacity = 0.7
+            this.$refs.iconEdit.style.opacity = 0.7
+            this.$refs.taskText.style.paddingLeft = '2.1rem'
         },
         hideIcon() {
             this.$refs.iconTrash.style.opacity = 0
             this.$refs.iconEdit.style.opacity = 0
+            this.$refs.taskText.style.paddingLeft = '1rem'
         },
         enableEditMode() {
             this.editMode = true
