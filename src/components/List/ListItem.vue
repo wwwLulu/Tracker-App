@@ -77,15 +77,6 @@ export default {
         deleteTask() {
             this.editMode = false
             this.$store.commit('deleteTask', { taskId: this.listItem.id })
-            // this.$store.commit({
-            //     type: 'deleteTask',
-            //     taskId: this.listItem.id,
-            // })
-            // console.log(this.$store.task)
-            // this.$store.dispatch({
-            //     type: 'deleteTask',
-            //     taskId: this.list.Item.id,
-            // })
         },
     },
 }
