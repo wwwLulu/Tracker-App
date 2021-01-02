@@ -118,20 +118,21 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 20rem;
+    min-height: 20rem;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     background-color: lightgrey;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.5rem;
     &__title {
-        font-size: 3rem;
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
     &__display {
-        font-size: 2.4rem;
+        font-size: 1.6rem;
     }
     &__start-btn {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 }
 </style>
