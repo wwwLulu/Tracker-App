@@ -29,7 +29,6 @@ export default {
         tasks: Array,
         mode: String, //To-Do | Doing | Done
     },
-    emits: ['addTask'],
     data() {
         return {
             toDoList: this.tasks.filter(item => item.status === this.mode),

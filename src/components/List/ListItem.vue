@@ -43,7 +43,6 @@ export default {
     props: {
         listItem: Object,
     },
-    emits: ['updateTask', 'deleteTask'],
     data() {
         return {
             editMode: false,
