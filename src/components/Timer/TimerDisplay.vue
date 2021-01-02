@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>{{ currentTodoName }}</p>
+        <h3 class="todo-name">{{ currentTodoName }}</h3>
         <p>
             {{ parseInt(timeOccurred.hours) || '0' }}hr
             {{ parseInt(timeOccurred.minutes) || '00' }}m
@@ -29,4 +29,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.todo-name {
+    font-size: 2.3rem;
+}
+</style>
