@@ -45,7 +45,7 @@ export default {
     },
     data() {
         return {
-            editMode: false,
+            editMode: this.listItem.task == ' ' ? true : false,
             updatedTask: this.listItem.task || ' ',
         }
     },
