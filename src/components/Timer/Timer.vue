@@ -86,6 +86,7 @@ export default {
                 this.totalStoppedTime.milliseconds += difference
             }
 
+            // This is an interval (check below this function)
             const getTimeOccurred = () => {
                 if (this.isStarted) {
                     this.currentTime.milliseconds = new Date().getTime()
