@@ -1,11 +1,14 @@
 <template>
     <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
+        draggable="true"
         ref="taskText"
         v-if="!editMode"
         class="task"
         @mouseenter="showIcon"
         @mouseleave="hideIcon"
+        @dragstart="startDrag"
+        @dragend="endDrag(), dragDrop()"
     >
         {{ listItem.task }}
         <i
@@ -64,6 +67,20 @@ export default {
         }
     },
     methods: {
+        dragDrop() {
+            console.log('dropped')
+            this.$store.commit('dragDrop', {
+                taskId: this.listItem.id,
+            })
+        },
+        startDrag() {
+            this.$refs.taskText.style.transform = 'skewY(2deg)'
+            setTimeout(() => (this.$refs.taskText.style.visibility = 'hidden'))
+        },
+        endDrag() {
+            this.$refs.taskText.style.transform = 'skewY(0deg)'
+            setTimeout(() => (this.$refs.taskText.style.visibility = 'visible'))
+        },
         showIcon() {
             this.$refs.iconTrash.style.opacity = 0.7
             this.$refs.iconEdit.style.opacity = 0.7
