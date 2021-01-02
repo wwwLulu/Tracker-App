@@ -43,10 +43,9 @@ export default {
     props: {
         listItem: Object,
     },
-    emits: ['updateTask', 'deleteTask'],
     data() {
         return {
-            editMode: false,
+            editMode: this.listItem.task == ' ' ? true : false,
             updatedTask: this.listItem.task || ' ',
         }
     },
@@ -74,16 +73,7 @@ export default {
         },
         deleteTask() {
             this.editMode = false
-            this.$emit('deleteTask', this.listItem.id)
-            // this.$store.commit({
-            //     type: 'deleteTask',
-            //     taskId: this.listItem.id,
-            // })
-            // console.log(this.$store.task)
-            // this.$store.dispatch({
-            //     type: 'deleteTask',
-            //     taskId: this.list.Item.id,
-            // })
+            this.$store.commit('deleteTask', { taskId: this.listItem.id })
         },
     },
 }
