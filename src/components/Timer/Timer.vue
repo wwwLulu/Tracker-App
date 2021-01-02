@@ -105,7 +105,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .timer {
     @media (max-width: 1200px) {
         margin-top: 3rem;
@@ -116,7 +116,7 @@ export default {
     width: 30rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     min-height: 20rem;
     text-align: center;
@@ -128,11 +128,24 @@ export default {
         font-size: 2rem;
         margin-bottom: 1rem;
     }
-    &__display {
+    &__task {
+        border-radius: 0.5rem;
+        border-left: 2px solid rgba(0, 0, 0, 0.4);
+        background: darken(lightgrey, 10%);
+        padding: 0 0.5rem;
+        margin-left: 0.5rem;
+        font-weight: 300;
         font-size: 1.6rem;
     }
     &__start-btn {
         margin-top: 2rem;
+    }
+    &__time {
+        font-weight: 400;
+        font-size: 1.6rem;
+        margin-top: 1rem;
+        letter-spacing: 0.2rem;
+        font-style: oblique;
     }
 }
 </style>

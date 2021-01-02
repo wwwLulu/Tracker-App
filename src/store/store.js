@@ -66,6 +66,7 @@ const store = createStore({
                 task: ' ',
                 id: state.tasks.length + 1,
                 status,
+                focus: false,
             })
         },
     },
