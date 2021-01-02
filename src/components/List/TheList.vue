@@ -34,7 +34,6 @@ export default {
     data() {
         return {
             toDoList: this.tasks.filter(item => item.status === this.mode),
-            dragging: false,
         }
     },
     watch: {
@@ -43,9 +42,6 @@ export default {
         },
     },
     methods: {
-        draggingListItem(dragging) {
-            this.dragging = dragging ? true : false
-        },
         addTask() {
             const payload = { status: this.mode }
             this.$store.commit('addTask', payload)
