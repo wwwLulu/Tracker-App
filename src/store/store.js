@@ -37,6 +37,15 @@ const store = createStore({
     },
 
     mutations: {
+        updateStatus(state, { taskId, status }) {
+            state.tasks.forEach(entry => {
+                if (entry.id == taskId) {
+                    entry.status = status
+                }
+            })
+            //Line below is a way for Tasks to appear updated to watchers since the line above wont indicate that
+            state.tasks = state.tasks.map(task => task)
+        },
         updateTask(state, { updatedTask, taskId }) {
             state.tasks.forEach(entry => {
                 if (entry.id == taskId) {

@@ -36,6 +36,18 @@
         >
             Close
         </button>
+        <select
+            class="btn"
+            @change="updateStatus"
+            name="mode"
+            ref="status"
+            v-model="currentStatus"
+        >
+            <optgroup :label="listItem.status">listItem.status</optgroup>
+            <option value="to-do">to-do</option>
+            <option value="doing">doing</option>
+            <option value="completed">completed</option>
+        </select>
     </div>
 </template>
 
@@ -48,6 +60,7 @@ export default {
         return {
             editMode: this.listItem.task == ' ' ? true : false,
             updatedTask: this.listItem.task || ' ',
+            currentStatus: this.listItem.status,
         }
     },
     methods: {
@@ -82,6 +95,12 @@ export default {
         deleteTask() {
             this.editMode = false
             this.$store.commit('deleteTask', { taskId: this.listItem.id })
+        },
+        updateStatus() {
+            this.$store.commit('updateStatus', {
+                taskId: this.listItem.id,
+                status: this.$refs.status.value,
+            })
         },
     },
 }
@@ -122,6 +141,11 @@ export default {
     }
     &__trash {
         left: 0.5rem;
+    }
+    &__status-label {
+        color: white;
+        font-size: 1rem;
+        display: inline-block;
     }
 }
 
