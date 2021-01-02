@@ -44,6 +44,9 @@ export default {
         totalActiveTime() {
             return this.$store.state.totalActiveTime
         },
+        currentListItem() {
+            return this.$store.getters.currentTodo
+        },
     },
     emits: ['startStopTimer'],
     methods: {
@@ -80,6 +83,7 @@ export default {
                         this.totalStoppedTime.milliseconds
 
                     this.totalActiveTime.milliseconds = timeTimerHasBeenActive
+                    this.currentListItem.timeActive = timeTimerHasBeenActive
 
                     this.totalActiveTime.seconds =
                         (timeTimerHasBeenActive / 1000) % 60
