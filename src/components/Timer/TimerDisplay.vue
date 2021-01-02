@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="todo-name">{{ currentTodoName }}</h3>
-        <p>
+        <p class="time-display">
             {{ parseInt(timeOccurred.hours) || '0' }}hr
             {{ parseInt(timeOccurred.minutes) || '00' }}m
             {{ parseInt(timeOccurred.seconds) || '00' }}s

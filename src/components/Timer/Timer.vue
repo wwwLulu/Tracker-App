@@ -26,8 +26,9 @@ export default {
         return {
             isStarted: false,
 
-            // Adding a date so it can be sent to
-            // a database
+            // Added a date so the start time can be sent to
+            // a database.
+
             startTime: {
                 date: '',
                 milliseconds: null,

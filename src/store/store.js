@@ -49,7 +49,7 @@ const store = createStore({
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
         },
         addTask(state, { status }) {
-            //When you delete then add a task, the ID's might get messed up
+            // When you delete then add a task, the ID's might get messed up
             // So reassigning is good here
             for (let i = 0; i < state.tasks.length; i++) {
                 state.tasks[i].id = i + 1
