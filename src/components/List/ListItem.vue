@@ -66,10 +66,7 @@ export default {
             this.editMode = false
         },
         saveAndClose() {
-            this.$store.commit('updateTask', {
-                updatedTask: this.updatedTask,
-                taskId: this.listItem.id,
-            })
+            this.$emit('updateTask', this.updatedTask, this.listItem.id)
             this.editMode = false
         },
         closeWithoutSaving() {
@@ -77,7 +74,7 @@ export default {
         },
         deleteTask() {
             this.editMode = false
-            this.$store.commit('deleteTask', { taskId: this.listItem.id })
+            this.$emit('deleteTask', this.listItem.id)
             // this.$store.commit({
             //     type: 'deleteTask',
             //     taskId: this.listItem.id,
@@ -103,7 +100,7 @@ export default {
     margin: 1rem 0;
     background: white;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 2rem;
     font-size: 1.4rem;
     font-weight: 300;
     border-left: 0.1rem rgba(0, 0, 0, 0.3) solid;
