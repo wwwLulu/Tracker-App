@@ -102,6 +102,7 @@ export default {
     }
     &__edit,
     &__trash {
+        font-size: 2rem;
         position: absolute;
         top: 1rem;
         opacity: 0;
