@@ -1,5 +1,5 @@
 <template>
-    <p>time active {{ listItem }}</p>
+    <p>time active {{ listItem.timeActive }}</p>
 
     <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
