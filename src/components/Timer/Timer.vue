@@ -72,6 +72,7 @@ export default {
                     this.stoppedTime.milliseconds
 
                 this.totalStoppedTime.milliseconds += difference
+                this.currentListItem.timeInactive += difference
             }
 
             const getTimeOccurred = () => {
