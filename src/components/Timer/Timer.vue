@@ -25,6 +25,9 @@ export default {
     data() {
         return {
             isStarted: false,
+
+            // Adding a date so it can be sent to
+            // a database
             startTime: {
                 date: '',
                 milliseconds: null,
@@ -38,6 +41,15 @@ export default {
                 minutes: null,
                 hours: null,
             },
+
+            // These three Times underneath are used to track
+            // active time by calculating differences
+            // between each.
+
+            // This is because the Date object is being
+            // used in order to be able to still hold
+            // time outside of the browser.
+
             stoppedTime: {
                 milliseconds: null,
             },
