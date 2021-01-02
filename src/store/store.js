@@ -26,6 +26,12 @@ const store = createStore({
                     status: 'completed',
                 },
             ],
+            totalActiveTime: {
+                milliseconds: null,
+                seconds: null,
+                minutes: null,
+                hours: null,
+            },
         }
     },
 

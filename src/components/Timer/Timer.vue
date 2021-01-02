@@ -29,12 +29,6 @@ export default {
             currentTime: {
                 milliseconds: null,
             },
-            totalActiveTime: {
-                milliseconds: null,
-                seconds: null,
-                minutes: null,
-                hours: null,
-            },
             stoppedTime: {
                 milliseconds: null,
             },
@@ -45,6 +39,11 @@ export default {
                 milliseconds: null,
             },
         }
+    },
+    computed: {
+        totalActiveTime() {
+            return this.$store.state.totalActiveTime
+        },
     },
     emits: ['startStopTimer'],
     methods: {
