@@ -107,14 +107,10 @@ export default {
     }
     &__edit,
     &__trash {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
         height: 100%;
         font-size: 1.2em;
         position: absolute;
         top: 1rem;
-        // top: 0;
         opacity: 0;
         &:hover {
             cursor: pointer;
@@ -136,7 +132,7 @@ export default {
 .task__edit-box {
     z-index: 1110;
     width: 100%;
-    min-height: 10rem;
+    height: 10rem;
     margin: 1rem 0;
     background: white;
     border-radius: 0.5rem;
