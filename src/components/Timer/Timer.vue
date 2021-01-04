@@ -1,7 +1,10 @@
 <template>
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
-        <timer-display class="timer__display" :timeOccurred="totalActiveTime" />
+        <timer-display
+            class="timer__display"
+            :timeOccurred="currentListItem.timeSpent"
+        />
         <timer-start-button
             class="timer__start-btn"
             @startStopTimer="timerStartHandler"
@@ -9,6 +12,7 @@
         />
     </div>
     <p>{{ currentListItem }}</p>
+    <p>{{ currentListItem.timeSpent }}</p>
 </template>
 
 <script>
@@ -23,16 +27,10 @@ export default {
     data() {
         return {
             isStarted: false,
-            startTime: {
-                date: '',
-                milliseconds: null,
-            },
+            startDate: '',
         }
     },
     computed: {
-        totalActiveTime() {
-            return this.$store.state.totalActiveTime
-        },
         currentListItem() {
             return this.$store.getters.currentTodo[0]
         },
@@ -42,35 +40,9 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            const thereIsNoStartTime = this.startTime.milliseconds === null
-            const thereIsNoStopTime = this.stoppedTime.milliseconds === null
-
-            if (thereIsNoStartTime) {
-                const date = new Date()
-                this.startTime.date = date.getDate()
-                this.startTime.milliseconds = date.getTime()
-            }
-
             const getTimeOccurred = () => {
                 if (this.isStarted) {
-                    this.currentTime.milliseconds = new Date().getTime()
-
-                    const timeTimerHasBeenActive =
-                        this.currentTime.milliseconds -
-                        this.startTime.milliseconds -
-                        this.totalStoppedTime.milliseconds
-
-                    this.totalActiveTime.milliseconds = timeTimerHasBeenActive
-                    this.currentListItem.timeActive = timeTimerHasBeenActive
-
-                    this.totalActiveTime.seconds =
-                        (timeTimerHasBeenActive / 1000) % 60
-
-                    this.totalActiveTime.minutes =
-                        (timeTimerHasBeenActive / (1000 * 60)) % 60
-
-                    this.totalActiveTime.hours =
-                        (timeTimerHasBeenActive / (1000 * 60 * 60)) % 24
+                    this.currentListItem.timeSpent += 100
                 } else {
                     clearInterval(interval)
                 }

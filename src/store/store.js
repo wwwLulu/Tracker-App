@@ -31,12 +31,6 @@ const store = createStore({
                     timeSpent: null,
                 },
             ],
-            totalActiveTime: {
-                milliseconds: null,
-                seconds: null,
-                minutes: null,
-                hours: null,
-            },
         }
     },
 
