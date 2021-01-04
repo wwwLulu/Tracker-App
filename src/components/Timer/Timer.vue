@@ -13,6 +13,9 @@
     </div>
     <p>{{ currentListItem }}</p>
     <p>{{ currentListItem.timeSpent }}</p>
+    <p v-for="date in currentListItem.startDates" v-bind:key="date">
+        {{ date }}
+    </p>
 </template>
 
 <script>
@@ -39,7 +42,11 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            if (this.currentListItem.timeSpent === null) {
+            if (this.isStarted) {
+                this.currentListItem.startDates = [
+                    ...this.currentListItem.startDate,
+                    new Date().toString(),
+                ]
             }
 
             const getTimeOccurred = () => {
