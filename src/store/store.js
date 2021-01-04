@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
-            focus: '',
+            focus: {},
             listHovered: '',
             tasks: [
                 {
@@ -41,6 +41,8 @@ const store = createStore({
         completedTodos: state =>
             state.tasks.filter(task => task.status === 'completed'),
         focus: state => state.focus,
+        focusedTask: state =>
+            state.tasks.filter(task => task.task === state.focus.task),
     },
 
     mutations: {
@@ -51,7 +53,8 @@ const store = createStore({
             if (state.listHovered == 'focus') {
                 state.tasks.forEach(entry => {
                     if (entry.id == taskId) {
-                        state.focus = entry.task
+                        state.focus['task'] = entry.task
+                        state.focus['timeSpent'] = entry.timeSpent
                     }
                 })
                 return
