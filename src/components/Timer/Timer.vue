@@ -1,21 +1,14 @@
 <template>
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
-        <timer-display
-            class="timer__display"
-            :timeOccurred="currentListItem.timeSpent"
-        />
+        <timer-display class="timer__display" :timeOccurred="timePassed" />
         <timer-start-button
             class="timer__start-btn"
-            @startStopTimer="timerStartHandler"
+            @startStopTimer="startStopButtonHandler"
             :isStarted="isStarted"
         />
     </div>
-    <p>{{ currentListItem }}</p>
-    <p>{{ currentListItem.timeSpent }}</p>
-    <p v-for="date in currentListItem.startDates" v-bind:key="date">
-        {{ date }}
-    </p>
+    <p>{{ currentListItems }}</p>
 </template>
 
 <script>
@@ -30,28 +23,30 @@ export default {
     data() {
         return {
             isStarted: false,
+            timePassed: null,
         }
     },
     computed: {
-        currentListItem() {
-            return this.$store.getters.currentTodo[0]
+        currentListItems() {
+            return this.$store.getters.currentTodos
         },
     },
     emits: ['startStopTimer'],
     methods: {
-        timerStartHandler() {
+        startStopButtonHandler() {
             this.isStarted = !this.isStarted
-
-            const getTimeOccurred = () => {
-                if (this.isStarted) {
-                    this.currentListItem.timeSpent += 1000
+            const i = int => {
+                if (!this.isStarted) {
+                    clearInterval(int)
                 } else {
-                    clearInterval(interval)
+                    this.timePassed += 1000
                 }
             }
-            let interval = setInterval(() => {
-                getTimeOccurred()
-            }, 1000)
+            if (this.isStarted) {
+                const int = setInterval(() => {
+                    i(int)
+                }, 1000)
+            }
         },
     },
 }

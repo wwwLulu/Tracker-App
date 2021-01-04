@@ -36,7 +36,7 @@ const store = createStore({
 
     getters: {
         todos: state => state.tasks.filter(task => task.status === 'to-do'),
-        currentTodo: state =>
+        currentTodos: state =>
             state.tasks.filter(task => task.status === 'doing'),
         completedTodos: state =>
             state.tasks.filter(task => task.status === 'completed'),
