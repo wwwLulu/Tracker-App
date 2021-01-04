@@ -21,7 +21,7 @@ const store = createStore({
                 {
                     id: 3,
                     task: 'Working on App',
-                    status: 'doing',
+                    status: 'to-do',
                     timeSpent: null,
                 },
                 {

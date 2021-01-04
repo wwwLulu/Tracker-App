@@ -1,7 +1,13 @@
 <template>
     <div>
-        <p class="timer__task">{{ listItem.task }}</p>
-        <p class="timer__time">{{ parseInt(listItem.timeSpent) || '00' }}s</p>
+        <p class="timer__task">
+            {{
+                listItem
+                    ? listItem.task
+                    : 'You need to place a task in the doing list'
+            }}
+        </p>
+        <p class="timer__time">{{ listItem ? listItem.timeSpent : '00' }}ms</p>
     </div>
 </template>
 
