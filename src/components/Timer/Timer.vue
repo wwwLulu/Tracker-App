@@ -27,7 +27,6 @@ export default {
     data() {
         return {
             isStarted: false,
-            startDate: '',
         }
     },
     computed: {
@@ -39,6 +38,9 @@ export default {
     methods: {
         timerStartHandler() {
             this.isStarted = !this.isStarted
+
+            if (this.currentListItem.timeSpent === null) {
+            }
 
             const getTimeOccurred = () => {
                 if (this.isStarted) {

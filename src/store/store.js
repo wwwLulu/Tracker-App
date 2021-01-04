@@ -11,24 +11,28 @@ const store = createStore({
                     task: 'Wash the dishes',
                     status: 'to-do',
                     timeSpent: null,
+                    startDates: [],
                 },
                 {
                     id: 2,
                     task: 'Code a website',
                     status: 'to-do',
                     timeSpent: null,
+                    startDates: [],
                 },
                 {
                     id: 3,
                     task: 'Working on App',
                     status: 'doing',
                     timeSpent: null,
+                    startDates: [],
                 },
                 {
                     id: 4,
                     task: 'Walk the dog',
                     status: 'completed',
                     timeSpent: null,
+                    startDates: [],
                 },
             ],
         }
