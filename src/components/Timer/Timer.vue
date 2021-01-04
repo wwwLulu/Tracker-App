@@ -33,6 +33,9 @@ export default {
         focusedTask() {
             return this.$store.getters.focusedTask[0]
         },
+        focus() {
+            return this.$store.state.focus
+        },
     },
     emits: ['startStopTimer'],
     methods: {
@@ -41,6 +44,7 @@ export default {
             if (this.isStarted) {
                 this.currentInterval = setInterval(() => {
                     this.focusedTask.timeSpent += 500
+                    this.focus.timeSpent = this.focusedTask.timeSpent
                 }, 500)
             } else {
                 clearInterval(this.currentInterval)
