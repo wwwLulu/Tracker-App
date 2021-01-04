@@ -40,14 +40,20 @@ export default {
     emits: ['startStopTimer'],
     methods: {
         startStopButtonHandler() {
-            this.isStarted = !this.isStarted
-            if (this.isStarted) {
-                this.currentInterval = setInterval(() => {
-                    this.focusedTask.timeSpent += 500
-                    this.focus.timeSpent = this.focusedTask.timeSpent
-                }, 500)
+            if (this.focus.task) {
+                this.isStarted = !this.isStarted
+                if (this.isStarted) {
+                    this.currentInterval = setInterval(() => {
+                        this.focusedTask.timeSpent += 500
+                        this.focus.timeSpent = this.focusedTask.timeSpent
+                    }, 500)
+                } else {
+                    clearInterval(this.currentInterval)
+                }
             } else {
-                clearInterval(this.currentInterval)
+                alert(
+                    'You need to add a task item to the timer! Try to drag an item from your to-do list and place it into the timer'
+                )
             }
         },
     },
