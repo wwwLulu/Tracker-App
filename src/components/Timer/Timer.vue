@@ -42,13 +42,6 @@ export default {
         timerStartHandler() {
             this.isStarted = !this.isStarted
 
-            if (this.isStarted) {
-                this.currentListItem.startDates = [
-                    ...this.currentListItem.startDate,
-                    new Date().toString(),
-                ]
-            }
-
             const getTimeOccurred = () => {
                 if (this.isStarted) {
                     this.currentListItem.timeSpent += 1000
