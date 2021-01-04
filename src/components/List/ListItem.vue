@@ -1,6 +1,4 @@
 <template>
-    <p>time active {{ listItem.timeSpent }}</p>
-
     <div @click="closeWithoutSaving" v-if="editMode" class="modal"></div>
     <p
         draggable="true"

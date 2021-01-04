@@ -11,7 +11,6 @@
             :isStarted="isStarted"
         />
     </div>
-    <p>{{ currentListItems }}</p>
 </template>
 
 <script>
