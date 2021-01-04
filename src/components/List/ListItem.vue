@@ -75,18 +75,29 @@ export default {
             })
         },
         dragDrop() {
-            console.log('dropped')
             this.$store.commit('dragDrop', {
                 taskId: this.listItem.id,
             })
         },
         startDrag() {
-            this.$refs.taskText.style.transform = 'skewY(2deg)'
-            setTimeout(() => (this.$refs.taskText.style.visibility = 'hidden'))
+            try {
+                this.$refs.taskText.style.transform = 'skewY(2deg)'
+                setTimeout(
+                    () => (this.$refs.taskText.style.visibility = 'hidden')
+                )
+            } catch (e) {
+                console.log('')
+            }
         },
         endDrag() {
-            this.$refs.taskText.style.transform = 'skewY(0deg)'
-            setTimeout(() => (this.$refs.taskText.style.visibility = 'visible'))
+            try {
+                this.$refs.taskText.style.transform = 'skewY(0deg)'
+                setTimeout(
+                    () => (this.$refs.taskText.style.visibility = 'visible')
+                )
+            } catch (e) {
+                console.log('')
+            }
         },
         showIcon() {
             try {
