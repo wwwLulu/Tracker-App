@@ -89,20 +89,28 @@ export default {
             setTimeout(() => (this.$refs.taskText.style.visibility = 'visible'))
         },
         showIcon() {
-            this.$refs.iconTrash.style.opacity = 0.7
-            this.$refs.iconEdit.style.opacity = 0.7
-            this.$refs.iconFocus.style.opacity = 0.7
-            this.$refs.taskText.style.paddingLeft = '2.2rem'
-            this.$refs.taskText.style.paddingRight = '2.2rem'
-            this.$refs.taskText.stlye.paddingRight = '4.2rem'
+            try {
+                this.$refs.iconTrash.style.opacity = 0.7
+                this.$refs.iconEdit.style.opacity = 0.7
+                this.$refs.iconFocus.style.opacity = 0.7
+                this.$refs.taskText.style.paddingLeft = '2.2rem'
+                this.$refs.taskText.style.paddingRight = '2.2rem'
+                this.$refs.taskText.stlye.paddingRight = '4.2rem'
+            } catch (e) {
+                console.log('')
+            }
         },
         hideIcon() {
-            this.$refs.iconTrash.style.opacity = 0
-            this.$refs.iconEdit.style.opacity = 0
-            this.$refs.iconFocus.style.opacity = 0
-            this.$refs.taskText.style.paddingLeft = '1rem'
-            this.$refs.taskText.style.paddingRight = '1rem'
-            this.$refs.taskText.style.paddingRight = '2rem'
+            try {
+                this.$refs.iconTrash.style.opacity = 0
+                this.$refs.iconEdit.style.opacity = 0
+                this.$refs.iconFocus.style.opacity = 0
+                this.$refs.taskText.style.paddingLeft = '1rem'
+                this.$refs.taskText.style.paddingRight = '1rem'
+                this.$refs.taskText.style.paddingRight = '2rem'
+            } catch (e) {
+                console.log('')
+            }
         },
         enableEditMode() {
             this.editMode = true
