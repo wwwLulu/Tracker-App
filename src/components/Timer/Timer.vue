@@ -1,13 +1,10 @@
 <template>
     <div class="timer">
-        <h1 class="timer__title">Focus</h1>
-        <timer-display
-            class="timer__display"
-            :timeOccurred="startCurrentDifference"
-        />
+        <h1 class="timer__title">Task</h1>
+        <timer-display class="timer__display" :listItem="currentListItems[0]" />
         <timer-start-button
             class="timer__start-btn"
-            @startStopTimer="timerStartHandler"
+            @startStopTimer="startStopButtonHandler"
             :isStarted="isStarted"
         />
     </div>
@@ -25,81 +22,29 @@ export default {
     data() {
         return {
             isStarted: false,
-            startTime: {
-                date: '',
-                milliseconds: null,
-            },
-            currentTime: {
-                milliseconds: null,
-            },
-            startCurrentDifference: {
-                milliseconds: null,
-                seconds: null,
-                minutes: null,
-                hours: null,
-            },
-            stoppedTime: {
-                milliseconds: null,
-            },
-            restartedTime: {
-                milliseconds: null,
-            },
-            totalStoppedTime: {
-                milliseconds: null,
-            },
+            timePassed: null,
+            // interval needed to be set in data, because
+            // when in the startStopButtonHandler it
+            // gets reset when clicked
+            currentInterval: null,
         }
+    },
+    computed: {
+        currentListItems() {
+            return this.$store.getters.currentTodos
+        },
     },
     emits: ['startStopTimer'],
     methods: {
-        timerStartHandler() {
+        startStopButtonHandler() {
             this.isStarted = !this.isStarted
-
-            const thereIsNoStartTime = this.startTime.milliseconds === null
-            const thereIsNoStopTime = this.stoppedTime.milliseconds === null
-
-            if (thereIsNoStartTime) {
-                const date = new Date()
-                this.startTime.date = date.getDate()
-                this.startTime.milliseconds = date.getTime()
+            if (this.isStarted) {
+                this.currentInterval = setInterval(() => {
+                    this.currentListItems[0].timeSpent += 500
+                }, 500)
+            } else {
+                clearInterval(this.currentInterval)
             }
-
-            if (!this.isStarted) {
-                this.stoppedTime.milliseconds = new Date().getTime()
-            } else if (!thereIsNoStopTime && this.isStarted) {
-                this.restartedTime.milliseconds = new Date().getTime()
-                const difference =
-                    this.restartedTime.milliseconds -
-                    this.stoppedTime.milliseconds
-
-                this.totalStoppedTime.milliseconds += difference
-            }
-
-            const getTimeOccurred = () => {
-                if (this.isStarted) {
-                    this.currentTime.milliseconds = new Date().getTime()
-
-                    const timeTimerHasBeenActive =
-                        this.currentTime.milliseconds -
-                        this.startTime.milliseconds -
-                        this.totalStoppedTime.milliseconds
-
-                    this.startCurrentDifference.milliseconds = timeTimerHasBeenActive
-
-                    this.startCurrentDifference.seconds =
-                        (timeTimerHasBeenActive / 1000) % 60
-
-                    this.startCurrentDifference.minutes =
-                        (timeTimerHasBeenActive / (1000 * 60)) % 60
-
-                    this.startCurrentDifference.hours =
-                        (timeTimerHasBeenActive / (1000 * 60 * 60)) % 24
-                } else {
-                    clearInterval(interval)
-                }
-            }
-            let interval = setInterval(() => {
-                getTimeOccurred()
-            }, 100)
         },
     },
 }

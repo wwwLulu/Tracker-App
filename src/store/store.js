@@ -10,21 +10,25 @@ const store = createStore({
                     id: 1,
                     task: 'Wash the dishes',
                     status: 'to-do',
+                    timeSpent: 0,
                 },
                 {
                     id: 2,
                     task: 'Code a website',
                     status: 'to-do',
+                    timeSpent: 0,
                 },
                 {
                     id: 3,
                     task: 'Working on App',
-                    status: 'doing',
+                    status: 'to-do',
+                    timeSpent: 0,
                 },
                 {
                     id: 4,
                     task: 'Walk the dog',
                     status: 'completed',
+                    timeSpent: 0,
                 },
             ],
         }
@@ -32,7 +36,7 @@ const store = createStore({
 
     getters: {
         todos: state => state.tasks.filter(task => task.status === 'to-do'),
-        currentTodo: state =>
+        currentTodos: state =>
             state.tasks.filter(task => task.status === 'doing'),
         completedTodos: state =>
             state.tasks.filter(task => task.status === 'completed'),
@@ -40,8 +44,8 @@ const store = createStore({
     },
 
     mutations: {
-        setFocus(state, { task }) {
-            state.focus = task
+        setFocus(state, { task, timeSpent }) {
+            state.focus = { task, timeSpent }
         },
         dragDrop(state, { taskId }) {
             if (state.listHovered == 'focus') {

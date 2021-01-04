@@ -23,6 +23,7 @@
             class="task__edit fas fa-edit"
         ></i>
     </p>
+
     <div v-if="editMode" class="task__edit-mode">
         <textarea
             class="task__edit-box"
@@ -71,7 +72,7 @@ export default {
         setFocus() {
             this.$store.commit('setFocus', {
                 task: this.listItem.task,
-                // timeSpent: this.listItem.timeSpent
+                timeSpent: this.listItem.timeSpent,
             })
         },
         dragDrop() {
