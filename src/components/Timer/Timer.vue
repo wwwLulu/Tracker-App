@@ -24,6 +24,7 @@ export default {
         return {
             isStarted: false,
             timePassed: null,
+            currentInterval: null,
         }
     },
     computed: {
@@ -35,17 +36,12 @@ export default {
     methods: {
         startStopButtonHandler() {
             this.isStarted = !this.isStarted
-            const i = int => {
-                if (!this.isStarted) {
-                    clearInterval(int)
-                } else {
-                    this.timePassed += 1000
-                }
-            }
             if (this.isStarted) {
-                const int = setInterval(() => {
-                    i(int)
+                this.currentInterval = setInterval(() => {
+                    this.timePassed += 1000
                 }, 1000)
+            } else {
+                clearInterval(this.currentInterval)
             }
         },
     },
