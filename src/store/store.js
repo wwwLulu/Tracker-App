@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
-            focus: '',
+            focus: {},
             listHovered: '',
             tasks: [
                 {
@@ -51,7 +51,8 @@ const store = createStore({
             if (state.listHovered == 'focus') {
                 state.tasks.forEach(entry => {
                     if (entry.id == taskId) {
-                        state.focus = entry.task
+                        state.focus['task'] = entry.task
+                        state.focus['timeSpent'] = entry.timeSpent
                     }
                 })
                 return
