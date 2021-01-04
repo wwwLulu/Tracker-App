@@ -1,7 +1,10 @@
 <template>
     <div class="timer">
         <h1 class="timer__title">Focus</h1>
-        <timer-display class="timer__display" :timeOccurred="timePassed" />
+        <timer-display
+            class="timer__display"
+            :timeOccurred="currentListItems[0].timeSpent"
+        />
         <timer-start-button
             class="timer__start-btn"
             @startStopTimer="startStopButtonHandler"
@@ -41,7 +44,7 @@ export default {
             this.isStarted = !this.isStarted
             if (this.isStarted) {
                 this.currentInterval = setInterval(() => {
-                    this.timePassed += 500
+                    this.currentListItems[0].timeSpent += 500
                 }, 500)
             } else {
                 clearInterval(this.currentInterval)
