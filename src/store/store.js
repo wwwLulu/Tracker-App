@@ -44,6 +44,14 @@ const store = createStore({
             state.focus = task
         },
         dragDrop(state, { taskId }) {
+            if (state.listHovered == 'focus') {
+                state.tasks.forEach(entry => {
+                    if (entry.id == taskId) {
+                        state.focus = entry.task
+                    }
+                })
+                return
+            }
             state.tasks.forEach(entry => {
                 if (entry.id == taskId) {
                     entry.status = state.listHovered
