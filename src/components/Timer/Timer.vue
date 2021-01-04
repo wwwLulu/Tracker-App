@@ -24,6 +24,9 @@ export default {
         return {
             isStarted: false,
             timePassed: null,
+            // interval needed to be set in data, because
+            // when in the startStopButtonHandler it
+            // gets reset when clicked
             currentInterval: null,
         }
     },
