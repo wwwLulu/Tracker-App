@@ -7,7 +7,7 @@
                     : 'You need to place a task in the doing list'
             }}
         </p>
-        <p class="timer__time">{{ listItem ? listItem.timeSpent : '00' }}ms</p>
+        <p class="timer__time">{{ listItem ? listItem.timeSpent : '0' }}ms</p>
     </div>
 </template>
 
