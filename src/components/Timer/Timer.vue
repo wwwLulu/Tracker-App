@@ -27,18 +27,6 @@ export default {
                 date: '',
                 milliseconds: null,
             },
-            currentTime: {
-                milliseconds: null,
-            },
-            stoppedTime: {
-                milliseconds: null,
-            },
-            restartedTime: {
-                milliseconds: null,
-            },
-            totalStoppedTime: {
-                milliseconds: null,
-            },
         }
     },
     computed: {
@@ -61,18 +49,6 @@ export default {
                 const date = new Date()
                 this.startTime.date = date.getDate()
                 this.startTime.milliseconds = date.getTime()
-            }
-
-            if (!this.isStarted) {
-                this.stoppedTime.milliseconds = new Date().getTime()
-            } else if (!thereIsNoStopTime && this.isStarted) {
-                this.restartedTime.milliseconds = new Date().getTime()
-                const difference =
-                    this.restartedTime.milliseconds -
-                    this.stoppedTime.milliseconds
-
-                this.totalStoppedTime.milliseconds += difference
-                this.currentListItem.timeInactive += difference
             }
 
             const getTimeOccurred = () => {
