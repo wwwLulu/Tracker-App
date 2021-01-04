@@ -16,6 +16,7 @@
             @click="deleteTask"
             class="task__trash fas fa-trash"
         ></i>
+        <i ref="iconFocus" class="task__focus fas fa-eye" @click="setFocus"></i>
         <i
             @click="enableEditMode"
             ref="iconEdit"
@@ -67,6 +68,12 @@ export default {
         }
     },
     methods: {
+        setFocus() {
+            this.$store.commit('setFocus', {
+                task: this.listItem.task,
+                // timeSpent: this.listItem.timeSpent
+            })
+        },
         dragDrop() {
             console.log('dropped')
             this.$store.commit('dragDrop', {
@@ -84,14 +91,18 @@ export default {
         showIcon() {
             this.$refs.iconTrash.style.opacity = 0.7
             this.$refs.iconEdit.style.opacity = 0.7
+            this.$refs.iconFocus.style.opacity = 0.7
             this.$refs.taskText.style.paddingLeft = '2.2rem'
             this.$refs.taskText.style.paddingRight = '2.2rem'
+            this.$refs.taskText.stlye.paddingRight = '4.2rem'
         },
         hideIcon() {
             this.$refs.iconTrash.style.opacity = 0
             this.$refs.iconEdit.style.opacity = 0
+            this.$refs.iconFocus.style.opacity = 0
             this.$refs.taskText.style.paddingLeft = '1rem'
             this.$refs.taskText.style.paddingRight = '1rem'
+            this.$refs.taskText.style.paddingRight = '2rem'
         },
         enableEditMode() {
             this.editMode = true
@@ -142,7 +153,8 @@ export default {
         background: darken(white, 11);
     }
     &__edit,
-    &__trash {
+    &__trash,
+    &__focus {
         height: 100%;
         font-size: 1.2em;
         position: absolute;
@@ -158,6 +170,9 @@ export default {
     }
     &__trash {
         left: 0.5rem;
+    }
+    &__focus {
+        right: 2.6rem;
     }
     &__status-label {
         color: white;
