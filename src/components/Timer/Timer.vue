@@ -41,8 +41,8 @@ export default {
             this.isStarted = !this.isStarted
             if (this.isStarted) {
                 this.currentInterval = setInterval(() => {
-                    this.timePassed += 1000
-                }, 1000)
+                    this.timePassed += 500
+                }, 500)
             } else {
                 clearInterval(this.currentInterval)
             }
