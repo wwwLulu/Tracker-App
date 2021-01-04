@@ -44,8 +44,8 @@ const store = createStore({
     },
 
     mutations: {
-        setFocus(state, { task }) {
-            state.focus = task
+        setFocus(state, { task, timeSpent }) {
+            state.focus = { task, timeSpent }
         },
         dragDrop(state, { taskId }) {
             if (state.listHovered == 'focus') {

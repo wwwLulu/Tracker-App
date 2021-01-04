@@ -72,7 +72,7 @@ export default {
         setFocus() {
             this.$store.commit('setFocus', {
                 task: this.listItem.task,
-                // timeSpent: this.listItem.timeSpent
+                timeSpent: this.listItem.timeSpent,
             })
         },
         dragDrop() {
