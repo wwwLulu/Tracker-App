@@ -1,7 +1,7 @@
 <template>
     <div class="timer">
         <h1 class="timer__title">Task</h1>
-        <timer-display class="timer__display" :listItem="currentListItems" />
+        <timer-display class="timer__display" :listItem="focusedTask" />
         <timer-start-button
             class="timer__start-btn"
             @startStopTimer="startStopButtonHandler"
@@ -30,8 +30,8 @@ export default {
         }
     },
     computed: {
-        currentListItems() {
-            return this.$store.getters.focus
+        focusedTask() {
+            return this.$store.getters.focusedTask[0]
         },
     },
     emits: ['startStopTimer'],
@@ -40,7 +40,7 @@ export default {
             this.isStarted = !this.isStarted
             if (this.isStarted) {
                 this.currentInterval = setInterval(() => {
-                    this.currentListItems.timeSpent += 500
+                    this.focusedTask.timeSpent += 500
                 }, 500)
             } else {
                 clearInterval(this.currentInterval)
