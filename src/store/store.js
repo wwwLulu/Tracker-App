@@ -41,6 +41,8 @@ const store = createStore({
         completedTodos: state =>
             state.tasks.filter(task => task.status === 'completed'),
         focus: state => state.focus,
+        focusedTask: state =>
+            state.tasks.filter(task => task.task === state.focus.task),
     },
 
     mutations: {

@@ -95,6 +95,17 @@ main {
     border-radius: 0.5rem;
 }
 
+.card {
+    margin-top: 3rem;
+    width: 30rem;
+    max-width: 30rem;
+    background: lightgrey;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.4rem;
+}
+
 .fas {
     color: var(--color-black);
 }
