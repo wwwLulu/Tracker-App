@@ -42,14 +42,14 @@ export default {
 
             const getTimeOccurred = () => {
                 if (this.isStarted) {
-                    this.currentListItem.timeSpent += 100
+                    this.currentListItem.timeSpent += 1000
                 } else {
                     clearInterval(interval)
                 }
             }
             let interval = setInterval(() => {
                 getTimeOccurred()
-            }, 100)
+            }, 1000)
         },
     },
 }
