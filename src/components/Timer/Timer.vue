@@ -1,6 +1,6 @@
 <template>
     <div class="timer">
-        <h1 class="timer__title">Focus</h1>
+        <h1 class="timer__title">Task</h1>
         <timer-display class="timer__display" :listItem="currentListItems[0]" />
         <timer-start-button
             class="timer__start-btn"
