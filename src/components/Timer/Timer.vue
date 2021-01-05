@@ -43,9 +43,9 @@ export default {
             this.isStarted = !this.isStarted
             if (this.isStarted) {
                 this.currentInterval = setInterval(() => {
-                    this.focusedTask.timeSpent += 500
+                    this.focusedTask.timeSpent += 1000
                     this.focus.timeSpent = this.focusedTask.timeSpent
-                }, 500)
+                }, 1000)
             } else {
                 clearInterval(this.currentInterval)
             }

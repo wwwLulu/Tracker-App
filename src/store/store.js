@@ -10,7 +10,7 @@ const store = createStore({
                     id: 1,
                     task: 'Wash the dishes',
                     status: 'to-do',
-                    timeSpent: 0,
+                    timeSpent: 0, //in milliseconds?
                 },
                 {
                     id: 2,
@@ -43,6 +43,10 @@ const store = createStore({
         focus: state => state.focus,
         focusedTask: state =>
             state.tasks.filter(task => task.task === state.focus.task),
+        time: state => {
+            let seconds = state.focus.timeSpent
+            return seconds
+        },
     },
 
     mutations: {
