@@ -96,6 +96,7 @@ const store = createStore({
                 task: ' ',
                 id: state.tasks.length + 1,
                 status,
+                timeSpent: 0,
                 focus: false,
             })
         },
