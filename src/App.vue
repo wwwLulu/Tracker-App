@@ -20,7 +20,7 @@
         ></the-list>
     </main>
 
-    <timer @dragover="dragOver('focus')" />
+    <Timer @dragover="dragOver('focus')" />
 </template>
 
 <script>
