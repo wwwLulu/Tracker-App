@@ -46,6 +46,9 @@ const store = createStore({
     },
 
     mutations: {
+        initializeTasksWithStorage(state) {
+            state.tasks = JSON.parse(localStorage.getItem('tasks'))
+        },
         setFocus(state, { task, timeSpent }) {
             state.focus = { task, timeSpent }
         },
@@ -82,6 +85,7 @@ const store = createStore({
                     entry.task = updatedTask
                 }
             })
+            localStorage.setItem('tasks', JSON.stringify(state.tasks))
         },
         deleteTask(state, { taskId }) {
             state.tasks = state.tasks.filter(entry => entry.id != taskId)

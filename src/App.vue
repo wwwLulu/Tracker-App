@@ -28,6 +28,9 @@ import Timer from '@/components/Timer/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
 
 export default {
+    mounted() {
+        this.$store.commit('initializeTasksWithStorage')
+    },
     components: {
         Timer,
         TheList,
