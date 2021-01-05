@@ -11,6 +11,9 @@ const store = createStore({
                     task: 'Wash the dishes',
                     status: 'to-do',
                     timeSpent: 0,
+
+                    // used to track times and be able to create
+                    // visual representations of data
                     startDates: [],
                     stopDates: [],
                 },
