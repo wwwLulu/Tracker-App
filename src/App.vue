@@ -22,19 +22,19 @@
 
     <timer @dragover="dragOver('focus')" />
 
-    <show-current-focus />
+    <!-- <show-current-focus /> -->
 </template>
 
 <script>
 import Timer from '@/components/Timer/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
-import ShowCurrentFocus from '@/components/Focus/ShowCurrentFocus.vue'
+// import ShowCurrentFocus from '@/components/Focus/ShowCurrentFocus.vue'
 
 export default {
     components: {
         Timer,
         TheList,
-        ShowCurrentFocus,
+        // ShowCurrentFocus,
     },
     computed: {
         tasks() {
