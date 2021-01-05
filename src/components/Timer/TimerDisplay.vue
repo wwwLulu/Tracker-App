@@ -26,9 +26,9 @@ export default {
             return JSON.stringify(this.$store.getters.focusedTask[0].timeSpent)
         },
         timerDisplay() {
-            let seconds = (this.timeInMilliseconds / 1000) % 60
-            let mins = Math.floor(seconds / 60)
-            let hours = Math.floor(mins / 24)
+            let seconds = ((this.timeInMilliseconds % 60000) / 1000).toFixed(0)
+            let mins = Math.floor(this.timeInMilliseconds / 60000)
+            let hours = Math.floor(mins / 24) % 24
             if (seconds < 10) {
                 seconds = `0${seconds}`
             }

@@ -43,10 +43,6 @@ const store = createStore({
         focus: state => state.focus,
         focusedTask: state =>
             state.tasks.filter(task => task.task === state.focus.task),
-        time: state => {
-            let seconds = state.focus.timeSpent
-            return seconds
-        },
     },
 
     mutations: {
