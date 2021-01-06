@@ -13,7 +13,6 @@
 <script>
 import TimerStartButton from './TimerStartButton.vue'
 import TimerDisplay from './TimerDisplay.vue'
-
 export default {
     components: {
         TimerStartButton,
@@ -40,20 +39,18 @@ export default {
     emits: ['startStopTimer'],
     methods: {
         startStopButtonHandler() {
-            if (this.focus.task) {
+            if (this.focusedTask) {
                 this.isStarted = !this.isStarted
                 if (this.isStarted) {
                     this.currentInterval = setInterval(() => {
-                        this.focusedTask.timeSpent += 500
+                        this.focusedTask.timeSpent += 1000
                         this.focus.timeSpent = this.focusedTask.timeSpent
-                    }, 500)
+                    }, 1000)
                 } else {
                     clearInterval(this.currentInterval)
                 }
             } else {
-                alert(
-                    'You need to add a task item to the timer! Try to drag an item from your to-do list and place it into the timer'
-                )
+                alert('You need to drag one of your items to the timer!')
             }
         },
     },

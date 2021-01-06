@@ -10,36 +10,25 @@ const store = createStore({
                     id: 1,
                     task: 'Wash the dishes',
                     status: 'to-do',
-                    timeSpent: 0,
-
-                    // used to track times and be able to create
-                    // visual representations of data
-                    startDates: [],
-                    stopDates: [],
+                    timeSpent: 0, //in milliseconds?
                 },
                 {
                     id: 2,
                     task: 'Code a website',
                     status: 'to-do',
                     timeSpent: 0,
-                    startDates: [],
-                    stopDates: [],
                 },
                 {
                     id: 3,
                     task: 'Working on App',
                     status: 'to-do',
                     timeSpent: 0,
-                    startDates: [],
-                    stopDates: [],
                 },
                 {
                     id: 4,
                     task: 'Walk the dog',
                     status: 'completed',
                     timeSpent: 0,
-                    startDates: [],
-                    stopDates: [],
                 },
             ],
         }
@@ -57,6 +46,9 @@ const store = createStore({
     },
 
     mutations: {
+        initializeTasksWithStorage(state) {
+            state.tasks = JSON.parse(localStorage.getItem('tasks'))
+        },
         setFocus(state, { task, timeSpent }) {
             state.focus = { task, timeSpent }
         },
@@ -93,6 +85,7 @@ const store = createStore({
                     entry.task = updatedTask
                 }
             })
+            localStorage.setItem('tasks', JSON.stringify(state.tasks))
         },
         deleteTask(state, { taskId }) {
             state.tasks = state.tasks.filter(entry => entry.id != taskId)
@@ -107,8 +100,8 @@ const store = createStore({
                 task: ' ',
                 id: state.tasks.length + 1,
                 status,
-                timeSpent: 0,
                 focus: false,
+                timeSpent: 0,
             })
         },
     },

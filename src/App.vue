@@ -20,21 +20,22 @@
         ></the-list>
     </main>
 
-    <timer @dragover="dragOver('focus')" />
-
-    <!-- <show-current-focus /> -->
+    <Timer @dragover="dragOver('focus')" />
 </template>
 
 <script>
 import Timer from '@/components/Timer/Timer.vue'
 import TheList from '@/components/List/TheList.vue'
-// import ShowCurrentFocus from '@/components/Focus/ShowCurrentFocus.vue'
 
 export default {
+    mounted() {
+        if (localStorage.getItem('tasks')) {
+            this.$store.commit('initializeTasksWithStorage')
+        }
+    },
     components: {
         Timer,
         TheList,
-        // ShowCurrentFocus,
     },
     computed: {
         tasks() {
