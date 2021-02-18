@@ -1,4 +1,7 @@
-# tracker
+# Tracker
+<a href='trackerstats.netlify.app'>Live Demo</a>
+<br>
+<img src='https://i.ibb.co/DCXQPdw/Screen-Shot-2021-02-18-at-1-12-48-AM.png'>
 
 ## Project setup
 ```
